@@ -10,11 +10,13 @@ export default function ContactForm() {
     message: "",
   });
 
+  const [verified, setVerified] = useState(false);
   const [notification, setNotification] = useState<string | null>(null);
   const [snackbarType, setSnackbarType] = useState<"success" | "error">(
     "success"
   );
   const [showSnackbar, setShowSnackbar] = useState(false);
+
   const turnstile = useTurnstile();
 
   const handleChange = (
@@ -131,7 +133,8 @@ export default function ContactForm() {
             <button
               type="submit"
               className="w-1/4 bg-gray-700 text-white p-4 text-lg rounded-md"
-              disabled={turnstile.verified}
+              onClick={() => turnstile.reset()}
+              disabled={!verified}
             >
               Send
             </button>
@@ -142,7 +145,7 @@ export default function ContactForm() {
                 onClose={closeSnackbar}
               />
             )}
-            <TurnstileWidget />
+            <TurnstileWidget setVerified={setVerified} />
           </div>
         </form>
       </div>
@@ -150,6 +153,20 @@ export default function ContactForm() {
   );
 }
 
-function TurnstileWidget() {
-  return <Turnstile sitekey="0x4AAAAAAAdEvLNtyuluh5J9" />;
+interface TurnstileWidgetProps {
+  setVerified: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function TurnstileWidget({ setVerified }: TurnstileWidgetProps) {
+  return (
+    <Turnstile
+      sitekey="0x4AAAAAAAdEvLNtyuluh5J9"
+      onVerify={() => {
+        setVerified(true);
+      }}
+      onExpire={() => {
+        setVerified(false);
+      }}
+    />
+  );
 }
