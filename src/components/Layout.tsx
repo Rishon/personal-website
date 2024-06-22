@@ -30,8 +30,6 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#000000" />
-
-        <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" />
       </Head>
 
       <div className="flex flex-col min-h-screen">
