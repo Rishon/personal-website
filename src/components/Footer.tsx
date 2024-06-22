@@ -4,7 +4,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
 
 // Components
-import SocialButton from "@/components/Social";
+import SocialButton from "@/components/SocialButton";
 
 export default function Footer() {
   return (

@@ -76,7 +76,7 @@ export default function Navbar() {
         {spotifyData ? (
           <div className="text-white flex items-center justify-center sm:justify-between">
             <div className="text-[#1DB954] flex items-center">
-              <div className="text-right sm:text-left">
+              <div className="text-right sm:text-right">
                 <div className="font-bold">
                   {spotifyData.artist.length > 25
                     ? `${spotifyData.artist.substring(0, 25)}...`
@@ -88,11 +88,11 @@ export default function Navbar() {
               </div>
               {spotifyData.cover && (
                 <Image
-                  width={40}
-                  height={40}
+                  width={100}
+                  height={100}
                   src={spotifyData.cover}
                   alt="Album cover"
-                  className="w-10 h-10 ml-4 mr-2"
+                  className="w-10 h-10 ml-4 rounded-md"
                 />
               )}
             </div>
