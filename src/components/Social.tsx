@@ -10,6 +10,7 @@ export default function SocialButton({
       href={link}
       className="hover:text-gray-300 text-gray-400"
       target="_blank"
+      rel="noopener noreferrer"
     >
       {children}
     </Link>

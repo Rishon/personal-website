@@ -49,7 +49,7 @@ export default function Home() {
         </p>
 
         {/* Social */}
-        <div className="flex space-x-4 mt-5  text-2xl">
+        <div className="flex space-x-4 text-2xl">
           <SocialButton link="https://github.rishon.systems">
             <FaGithub />
           </SocialButton>
@@ -69,7 +69,9 @@ export default function Home() {
 
         {/* Technologies */}
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold mt-20">Technologies</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mt-20">
+            Technologies 💻
+          </h2>
           <div className="flex flex-wrap gap-4 mt-5 text-gray-300">
             <TechLabel label="Java">
               <RiJavaLine />

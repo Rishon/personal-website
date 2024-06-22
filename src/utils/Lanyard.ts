@@ -1,4 +1,4 @@
-export async function fetchLanyardData(userId: string) {
+export async function fetchLanyardData() {
   try {
     const userId = "185711883460935680";
     const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);

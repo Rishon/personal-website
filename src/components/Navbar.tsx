@@ -33,9 +33,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const userId = "185711883460935680";
-      const lanyard = await fetchLanyardData(userId);
-
+      const lanyard = await fetchLanyardData();
       const spotifyInfo = lanyard?.data?.spotify;
 
       if (spotifyInfo) {
@@ -55,7 +53,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="w-full max-w-4xl sm:px-0 mx-auto mt-16 flex flex-col sm:flex-row items-center">
+    <header className="w-full max-w-4xl sm:px-0 mx-auto mt-8 flex flex-col sm:flex-row items-center">
       {/* Navigation Links */}
       <div className="flex flex-wrap justify-center sm:justify-start space-x-4 mb-4 sm:mb-0">
         {links.map((link) => (
@@ -79,8 +77,14 @@ export default function Navbar() {
           <div className="text-white flex items-center justify-center sm:justify-between">
             <div className="text-[#1DB954] flex items-center">
               <div className="text-right sm:text-left">
-                <div className="font-bold">{spotifyData.artist}</div>
-                {spotifyData.song}
+                <div className="font-bold">
+                  {spotifyData.artist.length > 25
+                    ? `${spotifyData.artist.substring(0, 25)}...`
+                    : spotifyData.artist}
+                </div>
+                {spotifyData.song.length > 25
+                  ? `${spotifyData.song.substring(0, 25)}...`
+                  : spotifyData.song}
               </div>
               {spotifyData.cover && (
                 <Image
