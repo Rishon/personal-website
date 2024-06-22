@@ -39,7 +39,7 @@ export default function WorkspaceSection() {
         startDate="2022"
         endDate="Present"
         link="https://noxcrew.com"
-        jobTitle="Interal Tester"
+        jobTitle="Internal Tester"
       />
       <WorkspaceLabel
         title="Twigo"
