@@ -16,6 +16,9 @@
 # production
 /build
 
+# bun
+bun.lockb
+
 # misc
 .DS_Store
 *.pem
