@@ -72,7 +72,11 @@ export default function Navbar() {
       </div>
 
       {/* Spotify */}
-      <div className="text-[#1DB954] mt-5 bg-gray-700 bg-opacity-20 p-2 rounded-lg sm:ml-auto px-4 text-center sm:text-left">
+      <div
+        className={`text-[#1DB954] mt-5 ${
+          spotifyData ? "" : "bg-gray-700 bg-opacity-20"
+        } p-2 rounded-lg sm:ml-auto px-4 text-center sm:text-left`}
+      >
         {spotifyData ? (
           <div className="flex items-center justify-center sm:justify-between">
             <div className="flex items-center">

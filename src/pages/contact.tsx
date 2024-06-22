@@ -37,6 +37,7 @@ export default function ContactForm() {
       setNotification("Please verify that you're human.");
       setSnackbarType("error");
       setShowSnackbar(true);
+      setLoading(false);
       return;
     }
 
