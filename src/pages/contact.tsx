@@ -1,7 +1,6 @@
-// React
 import { useState } from "react";
-// Turnstile
 import Turnstile, { useTurnstile } from "react-turnstile";
+import Snackbar from "@/components/Snackbar";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -11,7 +10,16 @@ export default function ContactForm() {
     message: "",
   });
 
-  const handleChange = (e: any) => {
+  const [notification, setNotification] = useState<string | null>(null);
+  const [snackbarType, setSnackbarType] = useState<"success" | "error">(
+    "success"
+  );
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const turnstile = useTurnstile();
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -19,7 +27,7 @@ export default function ContactForm() {
     });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -31,19 +39,28 @@ export default function ContactForm() {
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      if (response.ok) {
+        setNotification("Message sent successfully!");
+        setSnackbarType("success");
+        setShowSnackbar(true);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setNotification("Failed to send message.");
+        setSnackbarType("error");
+        setShowSnackbar(true);
+      }
     } catch (error) {
       console.error("Error sending email:", error);
+      setNotification("Error sending email.");
+      setSnackbarType("error");
+      setShowSnackbar(true);
     }
   };
 
-  function TurnstileWidget() {
-    const turnstile = useTurnstile();
-    return (
-      <Turnstile sitekey="0x4AAAAAAAdEvLNtyuluh5J9" onVerify={(token) => {}} />
-    );
-  }
+  const closeSnackbar = () => {
+    setShowSnackbar(false);
+    setNotification(null);
+  };
 
   return (
     <main className="flex flex-col items-center justify-center p-4">
@@ -114,13 +131,25 @@ export default function ContactForm() {
             <button
               type="submit"
               className="w-1/4 bg-gray-700 text-white p-4 text-lg rounded-md"
+              disabled={turnstile.verified}
             >
               Send
             </button>
+            {showSnackbar && (
+              <Snackbar
+                message={notification || ""}
+                type={snackbarType}
+                onClose={closeSnackbar}
+              />
+            )}
             <TurnstileWidget />
           </div>
         </form>
       </div>
     </main>
   );
+}
+
+function TurnstileWidget() {
+  return <Turnstile sitekey="0x4AAAAAAAdEvLNtyuluh5J9" />;
 }
