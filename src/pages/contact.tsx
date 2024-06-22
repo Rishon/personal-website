@@ -73,8 +73,8 @@ export default function ContactForm() {
           to send me a message using the form below.
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
+        <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-lg">
+          <div className="flex flex-col space-y-2">
             <label htmlFor="name" className="block text-sm">
               Your Name
             </label>
@@ -85,10 +85,10 @@ export default function ContactForm() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="mt-1 block w-full p-4 text-1xl border border-gray-300 resize-none rounded-md text-black bg-opacity-90 bg-gray-100"
+              className="p-3 text-lg border rounded-md"
             />
           </div>
-          <div>
+          <div className="flex flex-col space-y-2">
             <label htmlFor="email" className="block text-sm">
               Email Address
             </label>
@@ -99,10 +99,10 @@ export default function ContactForm() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="mt-1 block w-full p-4 text-1xl border border-gray-300 resize-none rounded-md text-black bg-opacity-90 bg-gray-100"
+              className="p-3 text-lg border rounded-md"
             />
           </div>
-          <div>
+          <div className="flex flex-col space-y-2">
             <label htmlFor="subject" className="block text-sm">
               Subject
             </label>
@@ -113,10 +113,10 @@ export default function ContactForm() {
               value={formData.subject}
               onChange={handleChange}
               required
-              className="mt-1 block w-full p-4 text-1xl border border-gray-300 resize-none rounded-md text-black bg-opacity-90 bg-gray-100"
+              className="p-3 text-lg border rounded-md"
             />
           </div>
-          <div>
+          <div className="flex flex-col space-y-2">
             <label htmlFor="message" className="block text-sm">
               Message
             </label>
@@ -126,27 +126,36 @@ export default function ContactForm() {
               value={formData.message}
               onChange={handleChange}
               required
-              className="mt-1 block w-full p-4 text-1xl border border-gray-300 resize-none rounded-md text-black bg-opacity-90 bg-gray-100"
+              rows={4}
+              className="p-3 text-lg border rounded-md"
             />
           </div>
-          <div className="flex items-center space-x-4">
+
+          <TurnstileWidget setVerified={setVerified} />
+
+          <div className="flex">
             <button
               type="submit"
-              className="w-1/4 bg-gray-700 text-white p-4 text-lg rounded-md"
-              onClick={() => turnstile.reset()}
+              className={`w-1/2 bg-gray-700 text-white p-4 text-lg rounded-md ${
+                verified ? "" : "opacity-50 cursor-not-allowed"
+              }`}
+              onClick={() => {
+                setVerified(false);
+                turnstile.reset();
+              }}
               disabled={!verified}
             >
               Send
             </button>
-            {showSnackbar && (
-              <Snackbar
-                message={notification || ""}
-                type={snackbarType}
-                onClose={closeSnackbar}
-              />
-            )}
-            <TurnstileWidget setVerified={setVerified} />
           </div>
+
+          {showSnackbar && (
+            <Snackbar
+              message={notification || ""}
+              type={snackbarType}
+              onClose={closeSnackbar}
+            />
+          )}
         </form>
       </div>
     </main>

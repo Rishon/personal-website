@@ -1,6 +1,5 @@
 // Next.js
 import Head from "next/head";
-import Script from "next/script";
 
 // Analytics
 import { GoogleAnalytics } from "@next/third-parties/google";
