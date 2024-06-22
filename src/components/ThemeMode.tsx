@@ -1,4 +1,6 @@
+// React
 import { useState, useEffect } from "react";
+// Icons
 import { MdLightMode, MdNightlight } from "react-icons/md";
 
 export default function ThemeMode() {
@@ -8,6 +10,9 @@ export default function ThemeMode() {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
       setTheme(savedTheme);
+      applyTheme(savedTheme);
+    } else {
+      applyTheme("dark");
     }
   }, []);
 
@@ -22,10 +27,12 @@ export default function ThemeMode() {
 
   const applyTheme = (theme: string) => {
     const root = document.documentElement;
-    if (theme === "dark") {
-      root.classList.add("dark");
-    } else {
+    if (theme === "light") {
+      root.classList.add("light");
       root.classList.remove("dark");
+    } else {
+      root.classList.add("dark");
+      root.classList.remove("light");
     }
   };
 

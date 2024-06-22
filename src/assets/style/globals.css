@@ -2,17 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Light Theme */
+/* Dark Theme */
 :root {
-  --bg-primary: #ffffff;
-  --text-primary: #333333;
+  --bg-primary: #101010;
+  --text-primary: #ffffff;
   --transition-duration: 0.3s;
 }
 
-/* Dark Theme */
-:root.dark {
-  --bg-primary: #101010;
-  --text-primary: #ffffff;
+/* Light Theme */
+:root.light {
+  --bg-primary: #ffffff;
+  --text-primary: #333333;
 }
 
 body {
