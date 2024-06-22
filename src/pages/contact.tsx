@@ -32,6 +32,25 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!verified) {
+      setNotification("Please verify that you're human.");
+      setSnackbarType("error");
+      setShowSnackbar(true);
+      return;
+    }
+
+    if (formData.message.length > 1000) {
+      setNotification("Message is too long.");
+      setSnackbarType("error");
+      setShowSnackbar(true);
+      return;
+    } else if (formData.message.length < 10) {
+      setNotification("Message is too short.");
+      setSnackbarType("error");
+      setShowSnackbar(true);
+      return;
+    }
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -84,8 +103,9 @@ export default function ContactForm() {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              maxLength={50}
               required
-              className="p-3 text-lg border rounded-md"
+              className="p-3 text-lg border rounded-md text-black"
             />
           </div>
           <div className="flex flex-col space-y-2">
@@ -99,7 +119,7 @@ export default function ContactForm() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="p-3 text-lg border rounded-md"
+              className="p-3 text-lg border rounded-md text-black"
             />
           </div>
           <div className="flex flex-col space-y-2">
@@ -112,8 +132,9 @@ export default function ContactForm() {
               name="subject"
               value={formData.subject}
               onChange={handleChange}
+              maxLength={100}
               required
-              className="p-3 text-lg border rounded-md"
+              className="p-3 text-lg border rounded-md text-black"
             />
           </div>
           <div className="flex flex-col space-y-2">
@@ -125,9 +146,10 @@ export default function ContactForm() {
               name="message"
               value={formData.message}
               onChange={handleChange}
+              maxLength={1000}
               required
               rows={4}
-              className="p-3 text-lg border rounded-md"
+              className="p-3 text-lg border rounded-md text-black resize-none"
             />
           </div>
 
