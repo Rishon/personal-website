@@ -48,7 +48,7 @@ export default function Navbar() {
     };
 
     fetchData();
-    const intervalId = setInterval(fetchData, 5 * 1000);
+    const intervalId = setInterval(fetchData, 10 * 1000);
     return () => clearInterval(intervalId);
   }, []);
 
@@ -72,10 +72,10 @@ export default function Navbar() {
       </div>
 
       {/* Spotify */}
-      <div className="mt-5 bg-gray-700 bg-opacity-20 p-2 rounded-lg sm:ml-auto px-4 text-center sm:text-left">
+      <div className="text-[#1DB954] mt-5 bg-gray-700 bg-opacity-20 p-2 rounded-lg sm:ml-auto px-4 text-center sm:text-left">
         {spotifyData ? (
-          <div className="text-white flex items-center justify-center sm:justify-between">
-            <div className="text-[#1DB954] flex items-center">
+          <div className="flex items-center justify-center sm:justify-between">
+            <div className="flex items-center">
               <div className="text-right sm:text-right">
                 <div className="font-bold">
                   {spotifyData.artist.length > 25
@@ -98,11 +98,9 @@ export default function Navbar() {
             </div>
           </div>
         ) : (
-          <div className="text-white flex items-center justify-center">
-            <span className="mr-2 text-[#1DB954]">
-              Not listening to anything
-            </span>
-            <FaSpotify className="text-xl mt-1 text-[#1DB954]" />
+          <div className="flex items-center justify-center">
+            <span className="mr-2">Not listening to anything</span>
+            <FaSpotify className="text-xl mt-1" />
           </div>
         )}
       </div>

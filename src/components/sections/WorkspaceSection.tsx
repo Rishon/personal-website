@@ -12,6 +12,7 @@ export default function WorkspaceSection() {
         startDate="2023"
         endDate="Present"
         link="https://pokesmp.net"
+        jobTitle="Server Owner"
       />
       <WorkspaceLabel
         title="Verart"
@@ -20,6 +21,25 @@ export default function WorkspaceSection() {
         startDate="2022"
         endDate="Present"
         link="https://verart.org"
+        jobTitle="System Administrator"
+      />
+      <WorkspaceLabel
+        title="Spark Universe"
+        description="Spark Universe is a Minecraft creative, development and animation studio."
+        image="/assets/sparkuniverse_logo.webp"
+        startDate="2022"
+        endDate="Present"
+        link="https://sparkuniverse.com/"
+        jobTitle="Essential Mod Tester"
+      />
+      <WorkspaceLabel
+        title="Noxcrew"
+        description="A team of creatives, Partnered with Microsoft to bring immersive experiences to Minecraft players worldwide."
+        image="/assets/noxcrew_logo.webp"
+        startDate="2022"
+        endDate="Present"
+        link="https://noxcrew.com"
+        jobTitle="Interal Tester"
       />
       <WorkspaceLabel
         title="Twigo"
@@ -28,6 +48,7 @@ export default function WorkspaceSection() {
         startDate="2023"
         endDate="2024"
         link="https://twigo.gg"
+        jobTitle="Game Developer"
       />
       <WorkspaceLabel
         title="RapTV"
@@ -36,6 +57,7 @@ export default function WorkspaceSection() {
         startDate="2022"
         endDate="2023"
         link="https://raptv.com"
+        jobTitle="Discord Bot Developer"
       />
       <WorkspaceLabel
         title="Discount Bank"
@@ -44,14 +66,16 @@ export default function WorkspaceSection() {
         startDate="2022"
         endDate="2023"
         link="https://www.discountbank.co.il"
+        jobTitle="Security Controller"
       />
       <WorkspaceLabel
         title="TopStrix"
-        description="Biggest Minecraft server in Israel."
+        description="TopStrix is the largest Minecraft network in Israel with over unique 70,000 overall players and over 3,000 daily login sessions."
         image="/assets/topstrix_logo.webp"
         startDate="2017"
         endDate="2022"
         link="https://topstrix.co.il"
+        jobTitle="Java Developer"
       />
     </div>
   );

@@ -20,7 +20,7 @@ export default function Home() {
       <div className="w-full max-w-4xl space-y-4 px-4 sm:px-0">
         {/* Introduction */}
         <h1 className="text-2xl sm:text-4xl font-bold">
-          Hi! I{"'"}m Rishon 👋
+          <span className="animated-gradient-text">Hi!</span> I{"'"}m Rishon 👋
         </h1>
         <p className="text-lg sm:text-2xl mt-5 text-gray-300">
           I{"'"}m a {calculateAge()}-year-old self-taught software engineer from
