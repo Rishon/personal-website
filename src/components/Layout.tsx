@@ -7,6 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 // Components
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ThemeMode from "@/components/ThemeMode";
 
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
@@ -43,6 +44,9 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 
         {/* Vercel Speed Insights */}
         <SpeedInsights />
+
+        {/* Theme Mode */}
+        <ThemeMode />
 
         {/* Footer */}
         <Footer />

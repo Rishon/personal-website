@@ -2,23 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light Theme */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --bg-primary: #ffffff;
+  --text-primary: #333333;
+  --transition-duration: 0.3s;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* Dark Theme */
+:root.dark {
+  --bg-primary: #101010;
+  --text-primary: #ffffff;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: #101010;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 
 @layer utilities {
