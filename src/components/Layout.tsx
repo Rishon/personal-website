@@ -1,7 +1,8 @@
 import Head from "next/head";
 
-// Google
+// Analytics
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Components
 import Navbar from "@/components/Navbar";
@@ -12,10 +13,18 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     <>
       <Head>
         <title>Rishon Jaffe</title>
+        <link rel="icon" href="/assets/favicon.ico" />
+
+        {/* Meta Tags */}
         <meta name="description" content="👋 hello there" />
         <meta name="keywords" content="Rishon, Website, About Me" />
         <meta name="author" content="Rishon Jaffe" />
-        <link rel="icon" href="/assets/favicon.ico" />
+
+        <meta property="og:title" content="Rishon Jaffe" />
+        <meta property="og:description" content="👋 hello there" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://rishon.systems" />
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#000000" />
       </Head>
@@ -31,6 +40,9 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 
         {/* Google Analytics */}
         <GoogleAnalytics gaId={`G-G5YRCNRC4H`} />
+
+        {/* Vercel Speed Insights */}
+        <SpeedInsights />
 
         {/* Footer */}
         <Footer />
