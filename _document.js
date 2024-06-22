@@ -1,8 +1,7 @@
-// pages/_document.js
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Html, Main, NextScript } from "next/document";
 import Script from "next/script";
 
-class MyDocument extends Document {
+class _document extends Document {
   render() {
     return (
       <Html lang="en">
@@ -19,4 +18,4 @@ class MyDocument extends Document {
   }
 }
 
-export default MyDocument;
+export default _document;

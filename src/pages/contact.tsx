@@ -1,5 +1,7 @@
 // React
 import { useState } from "react";
+// Turnstile
+import Turnstile, { useTurnstile } from "react-turnstile";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -35,6 +37,13 @@ export default function ContactForm() {
       console.error("Error sending email:", error);
     }
   };
+
+  function TurnstileWidget() {
+    const turnstile = useTurnstile();
+    return (
+      <Turnstile sitekey="0x4AAAAAAAdEvLNtyuluh5J9" onVerify={(token) => {}} />
+    );
+  }
 
   return (
     <main className="flex flex-col items-center justify-center p-4">
@@ -101,18 +110,14 @@ export default function ContactForm() {
               className="mt-1 block w-full p-4 text-1xl border border-gray-300 resize-none rounded-md text-black bg-opacity-90 bg-gray-100"
             />
           </div>
-          <div className="flex items-center">
-            <div
-              className="cf-turnstile"
-              data-sitekey="0x4AAAAAAAdEvLNtyuluh5J9"
-              data-theme="dark"
-            />
+          <div className="flex items-center space-x-4">
             <button
               type="submit"
               className="w-1/4 bg-gray-700 text-white p-4 text-lg rounded-md"
             >
               Send
             </button>
+            <TurnstileWidget />
           </div>
         </form>
       </div>
