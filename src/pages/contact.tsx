@@ -65,6 +65,8 @@ export default function ContactForm() {
         setSnackbarType("success");
         setShowSnackbar(true);
         setFormData({ name: "", email: "", subject: "", message: "" });
+        setVerified(false);
+        turnstile.reset();
       } else {
         setNotification("Failed to send message.");
         setSnackbarType("error");
@@ -158,13 +160,9 @@ export default function ContactForm() {
           <div className="flex">
             <button
               type="submit"
-              className={`w-1/2 bg-gray-700 text-white p-4 text-lg rounded-md ${
+              className={`w-1/2 bg-gray-700 text-white p-4 text-lg rounded-md hover:bg-gray-600 ${
                 verified ? "" : "opacity-50 cursor-not-allowed"
               }`}
-              onClick={() => {
-                setVerified(false);
-                turnstile.reset();
-              }}
               disabled={!verified}
             >
               Send
