@@ -51,6 +51,7 @@ export default function About() {
           <Link
             href="https://github.com/Rishon/personal-website"
             className="text-gray-600"
+            target="_blank"
           >
             GitHub
           </Link>
