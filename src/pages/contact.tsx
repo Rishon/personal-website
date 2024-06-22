@@ -33,6 +33,8 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    setLoading(true);
+
     if (!verified) {
       setNotification("Please verify that you're human.");
       setSnackbarType("error");
@@ -113,7 +115,7 @@ export default function ContactForm() {
               onChange={handleChange}
               maxLength={50}
               required
-              className="p-3 text-lg border rounded-md text-black"
+              className="p-3 text-lg border rounded-md text-black bg-gray-200 bg-opacity-90"
             />
           </div>
           <div className="flex flex-col space-y-2">
@@ -127,7 +129,7 @@ export default function ContactForm() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="p-3 text-lg border rounded-md text-black"
+              className="p-3 text-lg border rounded-md text-black bg-gray-200 bg-opacity-90"
             />
           </div>
           <div className="flex flex-col space-y-2">
@@ -142,7 +144,7 @@ export default function ContactForm() {
               onChange={handleChange}
               maxLength={100}
               required
-              className="p-3 text-lg border rounded-md text-black"
+              className="p-3 text-lg border rounded-md text-black bg-gray-200 bg-opacity-90"
             />
           </div>
           <div className="flex flex-col space-y-2">
@@ -157,7 +159,7 @@ export default function ContactForm() {
               maxLength={1000}
               required
               rows={4}
-              className="p-3 text-lg border rounded-md text-black resize-none"
+              className="p-3 text-lg border rounded-md text-black resize-none bg-gray-200 bg-opacity-90"
             />
           </div>
 
@@ -169,8 +171,14 @@ export default function ContactForm() {
               className={`w-1/2 bg-gray-700 text-white p-4 text-lg rounded-md hover:bg-gray-600 ${
                 verified ? "" : "opacity-50 cursor-not-allowed"
               }`}
-              onClick={() => setLoading(true)}
-              disabled={!verified || loading}
+              disabled={
+                !verified ||
+                loading ||
+                !formData.name ||
+                !formData.email ||
+                !formData.subject ||
+                !formData.message
+              }
             >
               Send
             </button>
