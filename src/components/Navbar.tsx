@@ -48,7 +48,7 @@ export default function Navbar() {
     };
 
     fetchData();
-    const intervalId = setInterval(fetchData, 10 * 1000);
+    const intervalId = setInterval(fetchData, 15 * 1000);
     return () => clearInterval(intervalId);
   }, []);
 

@@ -13,7 +13,9 @@ export default function Footer() {
         {/* Name */}
         <div className="font-bold text-xl mb-5 sm:mb-0 sm:inline-block text-left">
           Rishon Jaffe
-          <p className="text-sm text-gray-600 font-medium">Software Engineer</p>
+          <p className="text-sm text-gray-600 font-medium text-center sm:text-left">
+            Software Engineer
+          </p>
         </div>
 
         {/* Social Icons */}

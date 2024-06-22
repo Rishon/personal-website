@@ -11,6 +11,7 @@ export default function ContactForm() {
   });
 
   const [verified, setVerified] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [notification, setNotification] = useState<string | null>(null);
   const [snackbarType, setSnackbarType] = useState<"success" | "error">(
     "success"
@@ -43,11 +44,13 @@ export default function ContactForm() {
       setNotification("Message is too long.");
       setSnackbarType("error");
       setShowSnackbar(true);
+      setLoading(false);
       return;
     } else if (formData.message.length < 10) {
       setNotification("Message is too short.");
       setSnackbarType("error");
       setShowSnackbar(true);
+      setLoading(false);
       return;
     }
 
@@ -65,13 +68,15 @@ export default function ContactForm() {
         setSnackbarType("success");
         setShowSnackbar(true);
         setFormData({ name: "", email: "", subject: "", message: "" });
-        setVerified(false);
-        turnstile.reset();
       } else {
         setNotification("Failed to send message.");
         setSnackbarType("error");
         setShowSnackbar(true);
       }
+
+      setVerified(false);
+      setLoading(false);
+      turnstile.reset();
     } catch (error) {
       console.error("Error sending email:", error);
       setNotification("Error sending email.");
@@ -163,7 +168,8 @@ export default function ContactForm() {
               className={`w-1/2 bg-gray-700 text-white p-4 text-lg rounded-md hover:bg-gray-600 ${
                 verified ? "" : "opacity-50 cursor-not-allowed"
               }`}
-              disabled={!verified}
+              onClick={() => setLoading(true)}
+              disabled={!verified || loading}
             >
               Send
             </button>
