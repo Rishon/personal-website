@@ -29,8 +29,14 @@ MAIL_SECURE=true
 MAIL_PASSWORD=
 ```
 
-### Running the Development Server
+### Running in development
 
-To start the development server, run the following:
+To start, run the following:
 
 ``npm run dev`` / ``yarn run dev`` / ``bun run dev``
+
+### Building
+
+To build, run the following:
+
+``npm run build`` / ``yarn run build`` / ``bun run build``
