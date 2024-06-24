@@ -32,7 +32,8 @@ export default function WorkspaceLabel({
         <div className="flex flex-col text-center sm:items-start sm:text-left">
           <h3 className="text-lg sm:text-xl font-bold">{title}</h3>
           <code className="text-gray-600 text-sm whitespace-nowrap mt-0.5">
-            {jobTitle} • {startDate} - {endDate}
+            <span className="font-bold">{jobTitle}</span> • {startDate} -{" "}
+            {endDate}
           </code>
           <p className="text-gray-400 text-lg text-center sm:text-left">
             {description}
