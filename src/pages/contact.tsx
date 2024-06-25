@@ -97,7 +97,7 @@ export default function ContactForm() {
     <main className="flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-4xl space-y-4 text-center sm:text-left">
         <h1 className="text-2xl sm:text-3xl font-bold">Contact me 📨</h1>
-        <p className="text-lg sm:text-2xl mt-4 text-gray-500">
+        <p className="text-lg sm:text-2xl mt-4 text-[var(--paragraph-color)]">
           If you have any questions, feedback, or just want to say hi, feel free
           to send me a message using the form below.
         </p>

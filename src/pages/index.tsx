@@ -22,7 +22,7 @@ export default function Home() {
         <h1 className="text-2xl sm:text-4xl font-bold">
           <span className="animated-gradient-text">Hi!</span> I{"'"}m Rishon 👋
         </h1>
-        <p className="text-lg sm:text-2xl mt-5 text-gray-300">
+        <p className="text-lg sm:text-2xl mt-5 text-[var(--paragraph-color)]">
           I{"'"}m a {calculateAge()}-year-old self-taught software engineer from
           Israel, passionate about technology and always seeking new challenges
           to grow as a developer.

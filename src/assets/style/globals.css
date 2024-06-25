@@ -4,15 +4,17 @@
 
 /* Dark Theme */
 :root {
-  --bg-primary: #101010;
-  --text-primary: #ffffff;
+  --bg-primary: theme(colors.bg-primary-dark);
+  --text-primary: theme(colors.text-primary-dark);
+  --paragraph-color: theme(colors.paragraph-dark);
   --transition-duration: 0.3s;
 }
 
 /* Light Theme */
 :root.light {
-  --bg-primary: #ffffff;
-  --text-primary: #333333;
+  --bg-primary: theme(colors.bg-primary-light);
+  --text-primary: theme(colors.text-primary-light);
+  --paragraph-color: theme(colors.paragraph-light);
 }
 
 body {

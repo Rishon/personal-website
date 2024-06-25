@@ -18,12 +18,18 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         <link rel="icon" href="/assets/favicon.ico" />
 
         {/* Meta Tags */}
-        <meta name="description" content="👋 Rishon Jaffe, Software Engineer from Israel" />
+        <meta
+          name="description"
+          content="👋 Rishon Jaffe, Software Engineer from Israel"
+        />
         <meta name="keywords" content="Rishon, Website, About Me" />
         <meta name="author" content="Rishon Jaffe" />
 
         <meta property="og:title" content="Rishon Jaffe" />
-        <meta property="og:description" content="👋 Rishon Jaffe, Software Engineer from Israel" />
+        <meta
+          property="og:description"
+          content="👋 Rishon Jaffe, Software Engineer from Israel"
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rishon.systems" />
 

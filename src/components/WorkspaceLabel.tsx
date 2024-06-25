@@ -35,7 +35,7 @@ export default function WorkspaceLabel({
             <span className="font-bold">{jobTitle}</span> • {startDate} -{" "}
             {endDate}
           </code>
-          <p className="text-gray-400 text-lg text-center sm:text-left">
+          <p className="text-lg text-center sm:text-left text-[var(--paragraph-color)]">
             {description}
           </p>
         </div>

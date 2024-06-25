@@ -30,7 +30,7 @@ export default function TechStackSection() {
   return (
     <div>
       <h2 className="text-xl sm:text-2xl font-bold mt-20">Technologies 💻</h2>
-      <div className="flex flex-wrap gap-4 mt-5 text-gray-300">
+      <div className="flex flex-wrap gap-4 mt-5 text-[var(--paragraph-color)]">
         <TechLabel label="Java">
           <RiJavaLine />
         </TechLabel>

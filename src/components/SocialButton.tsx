@@ -8,7 +8,7 @@ export default function SocialButton({
   return (
     <Link
       href={link}
-      className="hover:text-gray-300 text-gray-400"
+      className="hover:text-gray-500 text-[var(--paragraph-color)]"
       target="_blank"
       rel="noopener noreferrer"
     >
