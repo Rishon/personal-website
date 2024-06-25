@@ -24,8 +24,8 @@ export default function Home() {
         </h1>
         <p className="text-lg sm:text-2xl mt-5 text-[var(--paragraph-color)]">
           I{"'"}m a {calculateAge()}-year-old self-taught software engineer from
-          Israel, passionate about technology and always seeking new challenges
-          to grow as a developer.
+          Israel who is passionate about technology and always seeking new
+          challenges to grow as a developer.
         </p>
 
         {/* Social */}
