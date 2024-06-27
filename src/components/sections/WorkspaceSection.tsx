@@ -43,7 +43,7 @@ export default function WorkspaceSection() {
       startDate: "Aug 2022",
       endDate: "Jan 2023",
       link: "https://www.discountbank.co.il",
-      jobTitle: "Security Controller",
+      jobTitle: "Security Control Room Operator",
     },
   ];
 
