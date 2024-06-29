@@ -49,7 +49,7 @@ export default function Projects() {
       <div className="w-full max-w-4xl space-y-4 text-left">
         <h1 className="text-2xl sm:text-3xl font-bold">Projects 🔨</h1>
         <p className="text-lg sm:text-lg text-[var(--paragraph-color)]">
-          Here are some of the projects I've worked on.
+          Here are some of the projects I{"'"}ve worked on.
         </p>
         <div className="flex-col space-y-8 text-2xl">
           {projectsList.map((project) => (
