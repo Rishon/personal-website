@@ -16,9 +16,9 @@ export default function About() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center p-4 space-y-20">
+    <main className="p-4 space-y-20">
       {/* Main Container */}
-      <div className="w-full max-w-4xl space-y-4 text-left sm:text-left">
+      <div className="w-full max-w-4xl space-y-4 text-left">
         <h1 className="text-2xl sm:text-3xl font-bold">About me 🚀</h1>
         <p className="text-lg sm:text-2xl mt-4 text-[var(--paragraph-color)]">
           Self-taught software developer from Israel. I have always had a
@@ -29,7 +29,8 @@ export default function About() {
           developer.
         </p>
       </div>
-      <div className="w-full max-w-4xl space-y-4 text-left sm:text-left">
+
+      <div className="w-full max-w-4xl space-y-4 text-left">
         <h1 className="text-2xl sm:text-3xl font-bold">Thanks to ✨</h1>
         <p className="text-lg sm:text-2xl mt-4">
           This website was created with{" "}
@@ -50,7 +51,7 @@ export default function About() {
           Source code available on{" "}
           <Link
             href="https://github.com/Rishon/personal-website"
-            className="text-gray-600"
+            className="text-gray-600 underline"
             target="_blank"
           >
             GitHub

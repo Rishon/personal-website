@@ -1,5 +1,5 @@
 // Components
-import TechLabel from "@/components/TechLabel";
+import TechLabel from "@/components/labels/TechLabel";
 
 // Icons
 import {

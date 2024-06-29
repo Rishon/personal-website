@@ -1,30 +1,20 @@
-"use client";
-
-// Next.js
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-/// React
 import React, { useEffect, useState } from "react";
-
-// Utils
 import { fetchLanyardData } from "@/utils/Lanyard";
-
-// Icons
 import { FaSpotify } from "react-icons/fa";
 import Image from "next/image";
 
 export default function Navbar() {
-  // Navigation
   const currentPage = usePathname();
 
   const links = [
     { path: "/", label: "Home" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
+    { path: "/projects", label: "Projects" },
   ];
 
-  // Lanyard
   const [spotifyData, setSpotifyData] = useState<{
     song: string;
     artist: string;
@@ -54,7 +44,6 @@ export default function Navbar() {
 
   return (
     <header className="w-full max-w-4xl sm:px-0 mx-auto mt-8 flex flex-col sm:flex-row items-center">
-      {/* Navigation Links */}
       <div className="flex flex-wrap justify-center sm:justify-start space-x-4 mb-4 sm:mb-0">
         {links.map((link) => (
           <Link key={link.path} href={link.path}>
@@ -71,7 +60,6 @@ export default function Navbar() {
         ))}
       </div>
 
-      {/* Spotify */}
       <div
         className={`text-[#1DB954] mt-5 ${
           spotifyData ? "" : "bg-gray-700 bg-opacity-20"

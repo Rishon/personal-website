@@ -1,5 +1,6 @@
 // Next.js
 import Head from "next/head";
+import Script from "next/script";
 
 // Analytics
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -36,6 +37,31 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#000000" />
       </Head>
+
+      {/* JSON-LD Structured Data */}
+      <Script
+        id="json-ld"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            url: "https://rishon.systems",
+            name: "Tracker",
+            author: {
+              "@type": "Organization",
+              name: "Sela Development",
+            },
+            description: "👋 Rishon Jaffe, Software Engineer from Israel",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: `https://rishon.systems/search?q={search_term_string}`,
+              "query-input": "required name=search_term_string",
+            },
+          }),
+        }}
+      />
 
       <div className="flex flex-col min-h-screen">
         {/* Navbar */}
