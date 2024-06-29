@@ -20,13 +20,20 @@ export default function Projects() {
     },
     {
       id: 3,
+      title: "Verart",
+      description: "A Minecraft realms team that creates Minecraft maps and event hosting.",
+      image: "/assets/volunteering/verart_logo.webp",
+      link: "https://verart.org",
+    },
+    {
+      id: 4,
       title: "PokeSMP",
-      description: "PokeSMP is an immersive Cobblemon Minecraft server.",
+      description: "An immersive Cobblemon Minecraft server.",
       image: "/assets/volunteering/pokesmp_logo.webp",
       link: "https://pokesmp.net",
     },
     {
-      id: 4,
+      id: 5,
       title: "Sync",
       description:
         "Sync is a Minecraft Paper plugin that syncs player activity and data between instances.",
@@ -34,7 +41,7 @@ export default function Projects() {
       link: "https://github.com/Rishon/sync",
     },
     {
-      id: 5,
+      id: 6,
       title: "Nametag",
       description:
         "Nametag is a Minecraft Paper plugin that allows you to create custom dynamic player name tags.",
