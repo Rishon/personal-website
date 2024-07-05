@@ -5,6 +5,17 @@ export default function WorkspaceSection() {
   const experiencesList = [
     {
       id: 1,
+      title: "LoverCraft LLC",
+      description:
+        "LoverCraft is a Minecraft server network ran by the YouTuber LoverFella",
+      image: "/assets/workspace/lovercraft_logo.webp",
+      startDate: "Jul 2024",
+      endDate: "Present",
+      link: "https://store.loverfella.com",
+      jobTitle: "Maintenance Developer",
+    },
+    {
+      id: 2,
       title: "Twigo",
       description:
         "Play and get trolled by your viewers in the most awesome ways while generating more revenue.",
@@ -15,7 +26,7 @@ export default function WorkspaceSection() {
       jobTitle: "Game Developer",
     },
     {
-      id: 2,
+      id: 3,
       title: "RapTV",
       description: "Hottest Rap News, Videos and Music.",
       image: "/assets/workspace/raptv_logo.webp",
@@ -25,7 +36,7 @@ export default function WorkspaceSection() {
       jobTitle: "Discord Bot Developer",
     },
     {
-      id: 3,
+      id: 4,
       title: "TopStrix",
       description:
         "TopStrix is the largest Minecraft network in Israel with over unique 70,000 overall players and over 3,000 daily login sessions.",
@@ -36,7 +47,7 @@ export default function WorkspaceSection() {
       jobTitle: "Java Developer",
     },
     {
-      id: 4,
+      id: 5,
       title: "Discount Bank",
       description: "Financial services company.",
       image: "/assets/workspace/discount_logo.webp",
