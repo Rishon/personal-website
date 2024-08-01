@@ -51,7 +51,7 @@ export default function Navbar() {
               className={`text-2xl ${
                 currentPage === link.path
                   ? "text-white-500 cursor-pointer"
-                  : "hover:text-white text-gray-700 cursor-pointer"
+                  : "hover:text-gray-300 text-gray-700 cursor-pointer"
               }`}
             >
               {link.label}
