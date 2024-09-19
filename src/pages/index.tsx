@@ -4,18 +4,38 @@ import SocialsSection from "@/components/sections/SocialsSection";
 import WorkspaceSection from "@/components/sections/WorkspaceSection";
 
 /// React
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Confetti from "react-confetti";
 
 export default function Home() {
+  const [isBirthday, setIsBirthday] = useState(false);
+  let birthDateDay = 20;
+  let birthDateMonth = 1;
+
   function calculateAge() {
-    let date = new Date(Date.UTC(2004, 0, 20)).getTime();
+    let birthDate = new Date(
+      Date.UTC(2004, birthDateMonth, birthDateDay)
+    ).getTime();
     let now = Date.now();
-    let age = Math.floor((now - date) / (1000 * 60 * 60 * 24 * 365.25));
+    let age = Math.floor((now - birthDate) / (1000 * 60 * 60 * 24 * 365.25));
     return age;
   }
 
+  function checkBirthday() {
+    const today = new Date();
+    const month = today.getUTCMonth();
+    const day = today.getUTCDate();
+    return month === birthDateMonth - 1 && day === birthDateDay;
+  }
+
+  useEffect(() => {
+    if (checkBirthday()) setIsBirthday(true);
+  }, []);
+
   return (
     <main className="w-full max-w-4xl space-y-4 px-4 sm:px-0">
+      {isBirthday && <Confetti />}
+
       {/* Introduction */}
       <h1 className="text-2xl sm:text-4xl font-bold">
         <span className="animated-gradient-text">Hi!</span> I{"'"}m Rishon 👋

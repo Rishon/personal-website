@@ -2,27 +2,29 @@
 import SocialButton from "@/components/SocialButton";
 
 // Icons
-import { FaGithub, FaLinkedin, FaDiscord } from "react-icons/fa";
+import { RxDiscordLogo } from "react-icons/rx";
+import { FiGithub } from "react-icons/fi";
+import { AiOutlineLinkedin } from "react-icons/ai";
 import { FaXTwitter } from "react-icons/fa6";
-import { SiGmail } from "react-icons/si";
+import { MdOutlineEmail } from "react-icons/md";
 
 export default function SocialsSection() {
   return (
     <div className="flex space-x-4 text-2xl">
       <SocialButton link="https://github.rishon.systems">
-        <FaGithub />
+        <FiGithub />
       </SocialButton>
       <SocialButton link="https://x.rishon.systems">
         <FaXTwitter />
       </SocialButton>
       <SocialButton link="https://linkedin.rishon.systems">
-        <FaLinkedin />
+        <AiOutlineLinkedin />
       </SocialButton>
       <SocialButton link="https://discord.rishon.systems">
-        <FaDiscord />
+        <RxDiscordLogo />
       </SocialButton>
       <SocialButton link="mailto:mail@rishon.systems">
-        <SiGmail />
+        <MdOutlineEmail />
       </SocialButton>
     </div>
   );
