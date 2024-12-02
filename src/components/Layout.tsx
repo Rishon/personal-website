@@ -4,7 +4,6 @@ import Script from "next/script";
 
 // Analytics
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Components
 import Navbar from "@/components/Navbar";
@@ -74,9 +73,6 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 
         {/* Google Analytics */}
         <GoogleAnalytics gaId={`G-G5YRCNRC4H`} />
-
-        {/* Vercel Speed Insights */}
-        <SpeedInsights />
 
         {/* Theme Mode */}
         <ThemeMode />
