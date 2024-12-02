@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PORT="${PORT:-3000}"
+PORT="${PORT:-30003}"
 
 ~/.bun/bin/bun install
 ~/.bun/bin/bun next telemetry disable
