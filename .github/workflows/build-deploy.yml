@@ -1,0 +1,58 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+
+      - name: Install bun
+        run: |
+          npm install -g bun
+
+      - name: Build web
+        run: |
+          bun install && bun run build
+
+      - name: Deploy using SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /home
+
+            if [ ! -d "personal-website" ]; then
+              gh repo clone Rishon/personal-website
+            fi
+
+            cd personal-website
+            git reset --hard origin/master
+            git pull origin
+
+            cd /home/personal-website && bun install
+            echo "PORT=${{ secrets.PORT }}" >> .env
+            echo "MAIL_HOST=${{ secrets.MAIL_HOST }}" >> .env
+            echo "MAIL_PORT=${{ secrets.MAIL_PORT }}" >> .env
+            echo "MAIL_USERNAME=${{ secrets.MAIL_USER }}" >> .env
+            echo "MAIL_PASSWORD=${{ secrets.MAIL_PASS }}" >> .env
+            echo "MAIL_SECURE=${{ secrets.MAIL_SECURE }}" >> .env
+
+            docker build . -t personal-website
+
+            docker container prune --force
+            docker image prune --force
+
+            docker compose up -d
