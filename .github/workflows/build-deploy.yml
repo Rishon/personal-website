@@ -43,6 +43,7 @@ jobs:
             git pull origin
 
             cd /home/personal-website && bun install
+            rm .env -f
             echo "PORT=${{ secrets.PORT }}" >> .env
             echo "MAIL_HOST=${{ secrets.MAIL_HOST }}" >> .env
             echo "MAIL_PORT=${{ secrets.MAIL_PORT }}" >> .env
