@@ -10,20 +10,19 @@ import {
   SiGit,
   SiLinux,
   SiIntellijidea,
-  SiVisualstudiocode,
   SiJavascript,
   SiNodedotjs,
   SiMongodb,
-  SiCsharp,
   SiDocker,
-  SiVisualstudio,
   SiVercel,
   SiMariadb,
   SiRedis,
   SiCloudflare,
   SiNginx,
 } from "react-icons/si";
-import { TbBrandNextjs } from "react-icons/tb";
+import { DiVisualstudio } from "react-icons/di";
+import { BiLogoVisualStudio } from "react-icons/bi";
+import { TbBrandNextjs, TbBrandCSharp } from "react-icons/tb";
 import { RiJavaLine } from "react-icons/ri";
 
 export default function TechStackSection() {
@@ -82,14 +81,14 @@ export default function TechStackSection() {
         <TechLabel label="MongoDB">
           <SiMongodb />
         </TechLabel>
-        <TechLabel label="C#">
-          <SiCsharp />
+        <TechLabel label="">
+          <TbBrandCSharp />
         </TechLabel>
         <TechLabel label="Visual Studio Code">
-          <SiVisualstudiocode />
+          <BiLogoVisualStudio />
         </TechLabel>
         <TechLabel label="Visual Studio">
-          <SiVisualstudio />
+          <DiVisualstudio />
         </TechLabel>
         <TechLabel label="IntelliJ IDEA">
           <SiIntellijidea />
