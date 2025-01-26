@@ -9,28 +9,31 @@ import Confetti from "react-confetti";
 
 export default function Home() {
   const [isBirthday, setIsBirthday] = useState(false);
+  const [age, setAge] = useState(0);
+
   let birthDateDay = 20;
   let birthDateMonth = 1;
 
-  function calculateAge() {
-    let birthDate = new Date(
-      Date.UTC(2004, birthDateMonth, birthDateDay)
-    ).getTime();
-    let now = Date.now();
-    let age = Math.floor((now - birthDate) / (1000 * 60 * 60 * 24 * 365.25));
-    return age;
-  }
-
-  function checkBirthday() {
-    const today = new Date();
-    const month = today.getUTCMonth();
-    const day = today.getUTCDate();
-    return month === birthDateMonth - 1 && day === birthDateDay;
-  }
-
   useEffect(() => {
+    const checkBirthday = () => {
+      const today = new Date();
+      return (
+        today.getUTCMonth() === birthDateMonth - 1 &&
+        today.getUTCDate() === birthDateDay
+      );
+    };
+
+    const calculateAge = () => {
+      let birthDate = new Date(
+        Date.UTC(2004, birthDateMonth - 1, birthDateDay)
+      ).getTime();
+      let now = Date.now();
+      return Math.floor((now - birthDate) / (1000 * 60 * 60 * 24 * 365.25));
+    };
+
     if (checkBirthday()) setIsBirthday(true);
-  }, []);
+    setAge(calculateAge());
+  }, [birthDateDay, birthDateMonth]);
 
   return (
     <main className="w-full max-w-4xl space-y-4 px-4 sm:px-0">
@@ -41,9 +44,9 @@ export default function Home() {
         <span className="animated-gradient-text">Hi!</span> I{"'"}m Rishon 👋
       </h1>
       <p className="text-lg sm:text-2xl mt-5 text-[var(--paragraph-color)]">
-        I{"'"}m a {calculateAge()}-year-old self-taught software engineer from
-        Israel who is passionate about technology and always seeking new
-        challenges to grow as a developer.
+        I{"'"}m a {age}-year-old self-taught software engineer from Israel who
+        is passionate about technology and always seeking new challenges to grow
+        as a developer.
       </p>
 
       {/* Social */}
