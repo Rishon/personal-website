@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 # Update the package list
 RUN apt-get update && apt-get autoremove -y
