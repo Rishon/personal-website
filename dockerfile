@@ -10,7 +10,7 @@ ARG PORT
 ENV PORT=$PORT
 
 # Install some basic tools
-RUN apt-get install -y nano wget curl git unzip zip
+RUN apt-get update && apt-get install -y nano wget curl git unzip zip
 
 # Install Node.js
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
