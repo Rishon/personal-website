@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { fetchLanyardData } from "@/utils/Lanyard";
+import { fetchLanyardData } from "@/pages/api/lanyard";
 import { FaSpotify } from "react-icons/fa";
 import Image from "next/image";
 
