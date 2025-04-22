@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getAccessToken, refreshAccessToken } from "@/lib/spotify";
+import { getAccessToken, refreshAccessToken } from "@/lib/Spotify";
 
 export default async function handler(
   req: NextApiRequest,
