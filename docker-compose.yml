@@ -3,4 +3,5 @@ services:
     image: personal-website
     container_name: personal-website
     restart: unless-stopped
-    network_mode: host
+    ports:
+      - "${PORT}:3000"
