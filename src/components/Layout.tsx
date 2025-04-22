@@ -47,7 +47,7 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
             "@context": "https://schema.org",
             "@type": "WebSite",
             url: "https://rishon.systems",
-            name: "Tracker",
+            name: "Rishon Jaffe",
             author: {
               "@type": "Organization",
               name: "Sela Development",
