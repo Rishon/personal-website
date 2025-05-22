@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { fetchLanyardData } from "@/pages/api/lanyard";
 import { FaSpotify } from "react-icons/fa";
 import Image from "next/image";
 
@@ -23,24 +22,40 @@ export default function Navbar() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const lanyard = await fetchLanyardData();
-      const spotifyInfo = lanyard?.data?.spotify;
+      const data = await fetchSpotifyData();
+      console.log("Spotify Data:", data);
 
-      if (spotifyInfo) {
-        setSpotifyData({
-          song: spotifyInfo.song,
-          artist: spotifyInfo.artist,
-          cover: spotifyInfo.album_art_url,
-        });
-      } else {
-        setSpotifyData(null);
-      }
+      // if (spotifyInfo) {
+      //   setSpotifyData({
+      //     song: spotifyInfo.song,
+      //     artist: spotifyInfo.artist,
+      //     cover: spotifyInfo.album_art_url,
+      //   });
+      // } else {
+      //   setSpotifyData(null);
+      // }
     };
 
     fetchData();
     const intervalId = setInterval(fetchData, 15 * 1000);
     return () => clearInterval(intervalId);
   }, []);
+
+  async function fetchSpotifyData() {
+    const response = await fetch("/api/spotify", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      console.log("Failed to fetch Spotify data");
+    }
+
+    const data = await response.json();
+    return data;
+  }
 
   return (
     <header className="w-full max-w-4xl sm:px-0 mx-auto mt-8 flex flex-col sm:flex-row items-center">

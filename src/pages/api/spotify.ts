@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getAccessToken, refreshAccessToken } from "@/lib/Spotify";
+import { getAccessToken, refreshAccessToken } from "@/lib/SpotifyLib";
 
 export default async function handler(
   req: NextApiRequest,
@@ -30,28 +30,16 @@ export default async function handler(
     }
 
     if (!response.ok) {
-      return res.status(response.status).json({ error: "Spotify API error" });
+      const errorText = await response.text();
+      return res
+        .status(response.status)
+        .json({ error: "Spotify API error", details: JSON.parse(errorText) });
     }
 
     const data = await response.json();
     return res.status(200).json(data);
   } catch (err) {
+    console.error("Error fetching Spotify data:", err);
     return res.status(500).json({ error: "Server error", details: err });
   }
-}
-
-export async function fetchSpotifyData() {
-  const response = await fetch("/api/spotify", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch Spotify data");
-  }
-
-  const data = await response.json();
-  return data;
 }
