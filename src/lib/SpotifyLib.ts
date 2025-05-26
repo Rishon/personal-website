@@ -128,7 +128,6 @@ export async function refreshAccessToken(): Promise<string> {
       timestamp: Date.now(),
     };
 
-    console.log("Refreshed tokens:", tokenData);
     saveTokensToFile();
     return tokenData.access_token;
   } catch (err) {
