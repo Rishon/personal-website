@@ -57,8 +57,8 @@ jobs:
             echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> .env
             echo "MAIL_SECURE=${{ secrets.MAIL_SECURE }}" >> .env
 
+            echo "SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }}" >> .env
             echo "NEXT_PUBLIC_SPOTIFY_CLIENT_ID=${{ secrets.NEXT_PUBLIC_SPOTIFY_CLIENT_ID }}" >> .env
-            echo "SPOTIFY_CLIENT_SECRET=${{ secrets.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET }}" >> .env
             echo "NEXT_PUBLIC_SPOTIFY_OAUTH=${{ secrets.NEXT_PUBLIC_SPOTIFY_OAUTH }}" >> .env
 
             docker build . -t personal-website
