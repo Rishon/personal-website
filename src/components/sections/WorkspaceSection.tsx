@@ -37,6 +37,16 @@ export default function WorkspaceSection() {
     },
     {
       id: 4,
+      title: "Discount Bank",
+      description: "Financial services company.",
+      image: "/assets/workspace/discount_logo.webp",
+      startDate: "Aug 2022",
+      endDate: "Jan 2023",
+      link: "https://www.discountbank.co.il",
+      jobTitle: "Security Control Room Operator",
+    },
+    {
+      id: 5,
       title: "TopStrix",
       description:
         "TopStrix is the largest Minecraft network in Israel with over unique 70,000 overall players and over 3,000 daily login sessions.",
@@ -45,16 +55,6 @@ export default function WorkspaceSection() {
       endDate: "Dec 2022",
       link: "https://store.topstrix.co.il",
       jobTitle: "Java Developer",
-    },
-    {
-      id: 5,
-      title: "Discount Bank",
-      description: "Financial services company.",
-      image: "/assets/workspace/discount_logo.webp",
-      startDate: "Aug 2022",
-      endDate: "Jan 2023",
-      link: "https://www.discountbank.co.il",
-      jobTitle: "Security Control Room Operator",
     },
   ];
 

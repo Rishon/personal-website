@@ -1,11 +1,15 @@
 "use client";
 
 import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { GetServerSideProps } from "next";
 
 export default function SpotifyNavigate() {
+  const router = useRouter();
+
   useEffect(() => {
     const client_id = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID!;
-    const redirect_uri = "http://localhost:3000/auth/spotify-callback";
+    const redirect_uri = "http://localhost:3000/auth/spotify-callback"; // Uses dev URL for local testing
     const scope = "user-read-playback-state user-read-currently-playing";
 
     const url = `https://accounts.spotify.com/authorize?${new URLSearchParams({
@@ -16,12 +20,29 @@ export default function SpotifyNavigate() {
       show_dialog: "true",
     })}`;
 
-    window.location.href = url;
-  }, []);
+    setTimeout(() => {
+      router.push(url);
+    }, 1000);
+  }, [router]);
 
   return (
-    <main>
+    <main className="flex flex-col items-center justify-center font-bold">
       <p>Redirecting to Spotify...</p>
     </main>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const isBlocked = process.env.NEXT_PUBLIC_SPOTIFY_OAUTH === "false";
+
+  if (isBlocked) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
+};

@@ -23,17 +23,17 @@ export default function Navbar() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchSpotifyData();
-      console.log("Spotify Data:", data);
 
-      // if (spotifyInfo) {
-      //   setSpotifyData({
-      //     song: spotifyInfo.song,
-      //     artist: spotifyInfo.artist,
-      //     cover: spotifyInfo.album_art_url,
-      //   });
-      // } else {
-      //   setSpotifyData(null);
-      // }
+      if (!data.item) {
+        setSpotifyData(null);
+        return;
+      }
+
+      setSpotifyData({
+        song: data.item.name,
+        artist: data.item.album.artists[0].name,
+        cover: data.item.album.images[0].url,
+      });
     };
 
     fetchData();
@@ -42,7 +42,7 @@ export default function Navbar() {
   }, []);
 
   async function fetchSpotifyData() {
-    const response = await fetch("/api/spotify", {
+    const response = await fetch("/api/spotify/validate", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
