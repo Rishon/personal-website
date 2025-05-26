@@ -50,11 +50,16 @@ jobs:
             cd /home/personal-website && bun install
             rm .env -f
             echo "PORT=${{ secrets.PORT }}" >> .env
+
             echo "MAIL_HOST=${{ secrets.MAIL_HOST }}" >> .env
             echo "MAIL_PORT=${{ secrets.MAIL_PORT }}" >> .env
             echo "MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}" >> .env
             echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> .env
             echo "MAIL_SECURE=${{ secrets.MAIL_SECURE }}" >> .env
+
+            echo "NEXT_PUBLIC_SPOTIFY_CLIENT_ID=${{ secrets.NEXT_PUBLIC_SPOTIFY_CLIENT_ID }}" >> .env
+            echo "SPOTIFY_CLIENT_SECRET=${{ secrets.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET }}" >> .env
+            echo "NEXT_PUBLIC_SPOTIFY_OAUTH=${{ secrets.NEXT_PUBLIC_SPOTIFY_OAUTH }}" >> .env
 
             docker build . -t personal-website
 
