@@ -11,7 +11,7 @@ export default function WorkspaceSection() {
       image: "/assets/workspace/lovercraft_logo.webp",
       startDate: "Jul 2024",
       endDate: "Present",
-      link: "https://store.loverfella.com",
+      link: "https://loverfella.com",
       jobTitle: "Maintenance Developer",
     },
     {
@@ -43,7 +43,7 @@ export default function WorkspaceSection() {
       image: "/assets/workspace/topstrix_logo.webp",
       startDate: "Jan 2017",
       endDate: "Dec 2022",
-      link: "https://topstrix.co.il",
+      link: "https://store.topstrix.co.il",
       jobTitle: "Java Developer",
     },
     {
