@@ -83,17 +83,6 @@ export default function WorkspaceSection() {
     },
     {
       id: 3,
-      title: "Spark Universe",
-      description:
-        "Spark Universe is a Minecraft creative, development and animation studio.",
-      image: "/assets/volunteering/sparkuniverse_logo.webp",
-      startDate: "Feb 2022",
-      endDate: "Present",
-      link: "https://sparkuniverse.com/",
-      jobTitle: "Essential Mod Tester",
-    },
-    {
-      id: 4,
       title: "Noxcrew",
       description:
         "A team of creatives, Partnered with Microsoft to bring immersive experiences to Minecraft players worldwide.",
@@ -102,6 +91,17 @@ export default function WorkspaceSection() {
       endDate: "Present",
       link: "https://noxcrew.com",
       jobTitle: "Internal Tester",
+    },
+    {
+      id: 4,
+      title: "Spark Universe",
+      description:
+        "Spark Universe is a Minecraft creative, development and animation studio.",
+      image: "/assets/volunteering/sparkuniverse_logo.webp",
+      startDate: "Feb 2022",
+      endDate: "May 2025",
+      link: "https://sparkuniverse.com/",
+      jobTitle: "Essential Mod Tester",
     },
   ];
 

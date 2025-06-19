@@ -9,7 +9,7 @@ import Confetti from "react-confetti";
 
 export default function Home() {
   const [isBirthday, setIsBirthday] = useState(false);
-  const [age, setAge] = useState(0);
+  const [age, setAge] = useState(21); // We don't want to show that I am 0 years old :sob:
 
   let birthDateDay = 20;
   let birthDateMonth = 1;

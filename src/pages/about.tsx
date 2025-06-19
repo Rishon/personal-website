@@ -30,6 +30,7 @@ export default function About() {
         </p>
       </div>
 
+      {/* Credits Section */}
       <div className="w-full max-w-4xl space-y-4 text-left">
         <h1 className="text-2xl sm:text-3xl font-bold">Thanks to ✨</h1>
         <p className="text-lg sm:text-2xl mt-4">
