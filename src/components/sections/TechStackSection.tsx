@@ -19,6 +19,7 @@ import {
   SiRedis,
   SiCloudflare,
   SiNginx,
+  SiGrafana,
 } from "react-icons/si";
 import { DiVisualstudio } from "react-icons/di";
 import { BiLogoVisualStudio } from "react-icons/bi";
@@ -68,6 +69,9 @@ export default function TechStackSection() {
         </TechLabel>
         <TechLabel label="Nginx">
           <SiNginx />
+        </TechLabel>
+        <TechLabel label="Grafana">
+          <SiGrafana />
         </TechLabel>
         <TechLabel label="React">
           <SiReact />
