@@ -8,9 +8,11 @@ export default function ContactForm() {
     email: "",
     subject: "",
     message: "",
+    captchaToken: "",
   });
 
   const [verified, setVerified] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [notification, setNotification] = useState<string | null>(null);
   const [snackbarType, setSnackbarType] = useState<"success" | "error">(
@@ -35,7 +37,7 @@ export default function ContactForm() {
 
     setLoading(true);
 
-    if (!verified) {
+    if (!verified || !captchaToken) {
       setNotification("Please verify that you're human.");
       setSnackbarType("error");
       setShowSnackbar(true);
@@ -70,7 +72,7 @@ export default function ContactForm() {
         setNotification("Message sent successfully!");
         setSnackbarType("success");
         setShowSnackbar(true);
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setFormData({ name: "", email: "", subject: "", message: "", captchaToken: "" });
       } else {
         setNotification("Failed to send message.");
         setSnackbarType("error");
@@ -163,16 +165,16 @@ export default function ContactForm() {
             />
           </div>
 
-          <TurnstileWidget setVerified={setVerified} />
+          <TurnstileWidget setVerified={setVerified} setCaptchaToken={setCaptchaToken} />
 
           <div className="flex">
             <button
               type="submit"
-              className={`w-1/2 bg-gray-700 text-white p-4 text-lg rounded-md hover:bg-gray-600 ${
-                verified ? "" : "opacity-50 cursor-not-allowed"
-              }`}
+              className={`w-1/2 bg-gray-700 text-white p-4 text-lg rounded-md hover:bg-gray-600 ${verified ? "" : "opacity-50 cursor-not-allowed"
+                }`}
               disabled={
                 !verified ||
+                !captchaToken ||
                 loading ||
                 !formData.name ||
                 !formData.email ||
@@ -199,13 +201,15 @@ export default function ContactForm() {
 
 interface TurnstileWidgetProps {
   setVerified: React.Dispatch<React.SetStateAction<boolean>>;
+  setCaptchaToken: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-function TurnstileWidget({ setVerified }: TurnstileWidgetProps) {
+function TurnstileWidget({ setVerified, setCaptchaToken }: TurnstileWidgetProps) {
   return (
     <Turnstile
       sitekey="0x4AAAAAAAdEvLNtyuluh5J9"
-      onVerify={() => {
+      onVerify={(token) => {
+        setCaptchaToken(token);
         setVerified(true);
       }}
       onExpire={() => {

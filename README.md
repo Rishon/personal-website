@@ -22,11 +22,19 @@ These instructions will help you set up the project on your local machine for de
 Create a ``.env.local`` file and fill out the keys:
 
 ```.env
+# Server
+PORT=3000
+
+# SMTP
 MAIL_HOST=
 MAIL_USERNAME=
 MAIL_PORT=465
 MAIL_SECURE=true
 MAIL_PASSWORD=
+
+# Turnstile
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=
+TURNSTILE_SECRET_KEY=
 ```
 
 ### Running in development
