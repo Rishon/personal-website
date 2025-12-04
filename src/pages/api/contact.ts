@@ -64,24 +64,26 @@ export default async function handler(
   }
 }
 
-async function validateCaptcha(token: string): Promise<Boolean> {
+async function validateCaptcha(token: string): Promise<boolean> {
   try {
-    const formData = new FormData();
-    formData.append("secret", process.env.TURNSTILE_SECRET_KEY || "");
-    formData.append("response", token);
+    const body = new URLSearchParams({
+      secret: process.env.TURNSTILE_SECRET_KEY ?? "",
+      response: token
+    });
 
     const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
       method: "POST",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/x-www-form-urlencoded"
       },
-      body: formData
+      body: body.toString()
     });
 
     const result = await res.json();
-    return result.success;
+    return result.success === true;
   } catch (error) {
     console.error("Error validating captcha:", error);
     return false;
   }
 }
+
