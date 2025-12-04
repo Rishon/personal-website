@@ -1,6 +1,10 @@
 # *
 User-agent: *
-Allow: /
+Disallow: /auth/spotify-callback
+
+# *
+User-agent: *
+Disallow: /auth/spotify-navigate
 
 # Host
 Host: https://rishon.systems

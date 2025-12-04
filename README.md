@@ -8,18 +8,29 @@ These instructions will help you set up the project on your local machine for de
 
 1. Clone the repository:
 
-    ```sh
-    git clone https://github.com/Rishon/personal-website
-    cd personal-website
-    ```
+   ```sh
+   git clone https://github.com/Rishon/personal-website
+   cd personal-website
+   ```
 
 2. Install the dependencies:
 
-    ``npm install`` / ``yarn install`` / ``bun install``
+   `npm install` / `yarn install` / `bun install`
 
 ### Environment Variables
 
-Create a ``.env.local`` file and fill out the keys:
+### Frontend:
+
+Create a `.env.development` or `.env.production` file based on your environment and fill out the keys and values:
+
+```.env
+# Turnstile
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=
+```
+
+### Backend:
+
+Create a `.env` file and fill out the keys and values:
 
 ```.env
 # Server
@@ -33,7 +44,6 @@ MAIL_SECURE=true
 MAIL_PASSWORD=
 
 # Turnstile
-NEXT_PUBLIC_TURNSTILE_SITE_KEY=
 TURNSTILE_SECRET_KEY=
 ```
 
@@ -41,10 +51,10 @@ TURNSTILE_SECRET_KEY=
 
 To start, run the following:
 
-``npm run dev`` / ``yarn run dev`` / ``bun run dev``
+`npm run dev` / `yarn run dev` / `bun run dev`
 
 ### Building
 
 To build, run the following:
 
-``npm run build`` / ``yarn run build`` / ``bun run build``
+`npm run build` / `yarn run build` / `bun run build`
