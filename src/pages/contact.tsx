@@ -8,7 +8,6 @@ export default function ContactForm() {
     email: "",
     subject: "",
     message: "",
-    captchaToken: "",
   });
 
   const [verified, setVerified] = useState(false);
@@ -65,14 +64,14 @@ export default function ContactForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, captchaToken }),
       });
 
       if (response.ok) {
         setNotification("Message sent successfully!");
         setSnackbarType("success");
         setShowSnackbar(true);
-        setFormData({ name: "", email: "", subject: "", message: "", captchaToken: "" });
+        setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
         setNotification("Failed to send message.");
         setSnackbarType("error");
