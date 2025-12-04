@@ -206,7 +206,7 @@ interface TurnstileWidgetProps {
 function TurnstileWidget({ setVerified, setCaptchaToken }: TurnstileWidgetProps) {
   return (
     <Turnstile
-      sitekey="0x4AAAAAAAdEvLNtyuluh5J9"
+      sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
       onVerify={(token) => {
         setCaptchaToken(token);
         setVerified(true);
