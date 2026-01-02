@@ -13,10 +13,10 @@ export default function Projects() {
     },
     {
       id: 2,
-      title: "Mikud",
-      description: "Find a zip code of an address in Israel.",
-      image: "/assets/projects/mikud_logo.webp",
-      link: "https://mikud.rishon.systems",
+      title: "NovaFrame",
+      description: "AI-powered creative platform for generating, enhancing, and transforming visuals with speed and precision. ",
+      image: "/assets/projects/novaframe_logo.webp",
+      link: "https://novaframe.io",
     },
     {
       id: 3,
