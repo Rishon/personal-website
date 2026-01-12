@@ -27,13 +27,20 @@ export default function Projects() {
     },
     {
       id: 4,
+      title: "Hystrix",
+      description: "Building a new Hytale experience, together with the community.",
+      image: "/assets/projects/hystrix_logo.webp",
+      link: "https://hystrix.gg",
+    },
+    {
+      id: 5,
       title: "PokeSMP",
       description: "An immersive Cobblemon Minecraft server.",
       image: "/assets/volunteering/pokesmp_logo.webp",
       link: "https://pokesmp.net",
     },
     {
-      id: 5,
+      id: 6,
       title: "Sync",
       description:
         "Sync is a Minecraft Paper plugin that syncs player activity and data between instances.",
@@ -41,7 +48,7 @@ export default function Projects() {
       link: "https://github.com/Rishon/sync",
     },
     {
-      id: 6,
+      id: 7,
       title: "Nametag",
       description:
         "Nametag is a Minecraft Paper plugin that allows you to create custom dynamic player name tags.",
