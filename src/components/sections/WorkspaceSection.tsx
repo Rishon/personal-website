@@ -83,17 +83,6 @@ export default function WorkspaceSection() {
     },
     {
       id: 3,
-      title: "Hystrix",
-      description:
-        "Building a new Hytale experience, together with the community.",
-      image: "/assets/projects/hystrix_logo.webp",
-      startDate: "Jan 2026",
-      endDate: "Present",
-      link: "https://hystrix.gg",
-      jobTitle: "Server Administrator",
-    },
-    {
-      id: 4,
       title: "Noxcrew",
       description:
         "A team of creatives, Partnered with Microsoft to bring immersive experiences to Minecraft players worldwide.",
@@ -104,7 +93,7 @@ export default function WorkspaceSection() {
       jobTitle: "Internal Tester",
     },
     {
-      id: 5,
+      id: 4,
       title: "Spark Universe",
       description:
         "Spark Universe is a Minecraft creative, development and animation studio.",

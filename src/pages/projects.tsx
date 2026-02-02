@@ -27,10 +27,10 @@ export default function Projects() {
     },
     {
       id: 4,
-      title: "Hystrix",
-      description: "Building a new Hytale experience, together with the community.",
-      image: "/assets/projects/hystrix_logo.webp",
-      link: "https://hystrix.gg",
+      title: "Zeraph",
+      description: " Zeraph provides real-time DDoS protection, keeping gameservers secure ",
+      image: "/assets/projects/zeraph_logo.webp",
+      link: "https://zeraph.app",
     },
     {
       id: 5,
