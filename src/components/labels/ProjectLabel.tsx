@@ -17,8 +17,8 @@ export default function ProjectLabel({
     <div className="bg-gray-700 bg-opacity-20 p-5 flex flex-col items-center sm:flex-row rounded-lg w-full sm:w-full sm:max-w-full max-w-xs hover:bg-opacity-30 cursor-pointer space-y-4 sm:space-y-0 sm:space-x-5">
       <Image
         src={image}
-        width={50}
-        height={50}
+        width={64}
+        height={64}
         alt={title}
         className="rounded-lg"
       />
