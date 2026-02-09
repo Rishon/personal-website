@@ -241,24 +241,23 @@ export default function ContactForm() {
               !formData.subject ||
               !formData.message
             }
-            className={`w-full sm:w-auto px-8 py-3 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-lg font-medium transition-all duration-200 ${
-              verified
-                ? "hover:translate-y-[-2px]"
-                : "opacity-50 cursor-not-allowed"
-            }`}
+            className={`w-full sm:w-auto px-8 py-3 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-lg font-medium transition-all duration-200 ${verified
+              ? "hover:translate-y-[-2px]"
+              : "opacity-50 cursor-not-allowed"
+              }`}
           >
             {loading ? "Sending..." : "Send Message"}
           </button>
-
-          {showSnackbar && (
-            <Snackbar
-              message={notification || ""}
-              type={snackbarType}
-              onClose={closeSnackbar}
-            />
-          )}
         </form>
       </section>
+
+      {showSnackbar && (
+        <Snackbar
+          message={notification || ""}
+          type={snackbarType}
+          onClose={closeSnackbar}
+        />
+      )}
     </div>
   );
 }
