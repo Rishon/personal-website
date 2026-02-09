@@ -73,7 +73,9 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         </main>
 
         {/* Google Analytics */}
-        <GoogleAnalytics gaId={`G-G5YRCNRC4H`} />
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
 
         {/* Theme Mode */}
         <ThemeMode />
