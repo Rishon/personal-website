@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method === "POST") {
     const { name, email, subject, message, captchaToken } = req.body;
@@ -68,16 +68,19 @@ async function validateCaptcha(token: string): Promise<boolean> {
   try {
     const body = new URLSearchParams({
       secret: process.env.TURNSTILE_SECRET_KEY ?? "",
-      response: token
+      response: token,
     });
 
-    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
+    const res = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: body.toString(),
       },
-      body: body.toString()
-    });
+    );
 
     const result = await res.json();
     return result.success === true;
@@ -86,4 +89,3 @@ async function validateCaptcha(token: string): Promise<boolean> {
     return false;
   }
 }
-

@@ -2,39 +2,56 @@
 import { FaGithub, FaLinkedin, FaDiscord } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
-
-// Components
-import SocialButton from "@/components/SocialButton";
+import Link from "next/link";
 
 export default function Footer() {
-  return (
-    <footer className="w-full max-w-4xl mx-auto pb-10 text-center sm:text-left">
-      <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between">
-        {/* Name */}
-        <div className="font-bold text-xl mb-5 sm:mb-0 sm:inline-block text-left">
-          Rishon Jaffe
-          <p className="text-sm text-gray-600 font-medium text-center sm:text-left">
-            Software Engineer
-          </p>
-        </div>
+  const socials = [
+    { icon: FaGithub, href: "https://github.rishon.systems", label: "GitHub" },
+    { icon: FaXTwitter, href: "https://x.rishon.systems", label: "Twitter" },
+    {
+      icon: FaLinkedin,
+      href: "https://linkedin.rishon.systems",
+      label: "LinkedIn",
+    },
+    {
+      icon: FaDiscord,
+      href: "https://discord.rishon.systems",
+      label: "Discord",
+    },
+    { icon: SiGmail, href: "mailto:mail@rishon.systems", label: "Email" },
+  ];
 
-        {/* Social Icons */}
-        <div className="flex space-x-4 flex-wrap justify-center sm:justify-end text-xl mt-2 sm:mt-0">
-          <SocialButton link="https://github.rishon.systems">
-            <FaGithub />
-          </SocialButton>
-          <SocialButton link="https://x.rishon.systems">
-            <FaXTwitter />
-          </SocialButton>
-          <SocialButton link="https://linkedin.rishon.systems">
-            <FaLinkedin />
-          </SocialButton>
-          <SocialButton link="https://discord.rishon.systems">
-            <FaDiscord />
-          </SocialButton>
-          <SocialButton link="mailto:mail@rishon.systems">
-            <SiGmail />
-          </SocialButton>
+  return (
+    <footer className="w-full border-t border-[var(--border-subtle)] mt-auto relative z-10">
+      <div className="max-w-3xl mx-auto px-6 py-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+          {/* Copyright */}
+          <div className="text-sm text-[var(--text-secondary)] text-center sm:text-left">
+            <p>© {new Date().getFullYear()} Rishon Jaffe</p>
+            <Link
+              href="https://github.com/Rishon/personal-website"
+              target="_blank"
+              className="link-underline text-xs mt-1 inline-block"
+            >
+              View Source
+            </Link>
+          </div>
+
+          {/* Social */}
+          <div className="flex items-center gap-2">
+            {socials.map((social) => (
+              <Link
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="social-icon"
+              >
+                <social.icon className="text-base" />
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

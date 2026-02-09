@@ -3,7 +3,7 @@ import { getAccessToken, refreshAccessToken } from "@/lib/SpotifyLib";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method !== "GET") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -18,7 +18,7 @@ export default async function handler(
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
 
     if (response.status === 401) {
@@ -30,7 +30,7 @@ export default async function handler(
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
     }
 
@@ -45,7 +45,7 @@ export default async function handler(
         "Spotify API error:",
         errorText,
         "Status:",
-        response.status
+        response.status,
       );
       return res
         .status(response.status)

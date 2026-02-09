@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSpotify } from "react-icons/fa";
 import Image from "next/image";
 
@@ -9,9 +9,8 @@ export default function Navbar() {
 
   const links = [
     { path: "/", label: "Home" },
-    { path: "/about", label: "About" },
-    { path: "/contact", label: "Contact" },
     { path: "/projects", label: "Projects" },
+    { path: "/contact", label: "Contact" },
   ];
 
   const [spotifyData, setSpotifyData] = useState<{
@@ -42,72 +41,73 @@ export default function Navbar() {
   }, []);
 
   async function fetchSpotifyData() {
-    const response = await fetch("/api/spotify/validate", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    try {
+      const response = await fetch("/api/spotify/validate", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-    if (!response.ok) {
-      console.log("Failed to fetch Spotify data");
+      if (!response.ok) {
+        return { item: null };
+      }
+
+      const data = await response.json();
+      return data;
+    } catch {
+      return { item: null };
     }
-
-    const data = await response.json();
-    return data;
   }
 
   return (
-    <header className="w-full max-w-4xl sm:px-0 mx-auto mt-8 flex flex-col sm:flex-row items-center">
-      <div className="flex flex-wrap justify-center sm:justify-start space-x-4 mb-4 sm:mb-0">
-        {links.map((link) => (
-          <Link key={link.path} href={link.path}>
-            <p
-              className={`text-2xl ${
-                currentPage === link.path
-                  ? "text-white-500 cursor-pointer"
-                  : "hover:text-gray-300 text-gray-700 cursor-pointer"
-              }`}
-            >
-              {link.label}
-            </p>
-          </Link>
-        ))}
-      </div>
+    <header className="w-full sticky top-0 z-50 bg-[var(--bg-primary)]/80 backdrop-blur-md border-b border-[var(--border-subtle)]">
+      <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Navigation Links */}
+        <nav className="flex items-center gap-6">
+          {links.map((link) => (
+            <Link key={link.path} href={link.path}>
+              <span
+                className={`nav-link text-sm ${
+                  currentPage === link.path
+                    ? "active text-[var(--text-primary)]"
+                    : ""
+                }`}
+              >
+                {link.label}
+              </span>
+            </Link>
+          ))}
+        </nav>
 
-      <div
-        className={`text-[#1DB954] mt-5 ${
-          spotifyData ? "" : "bg-gray-700 bg-opacity-20"
-        } p-2 rounded-lg sm:ml-auto px-4 text-center sm:text-left`}
-      >
+        {/* Spotify Now Playing */}
         {spotifyData ? (
-          <div className="flex items-center justify-center sm:justify-between">
-            <div className="flex items-center">
-              <div className="text-right sm:text-right">
-                <div className="font-bold">
-                  {spotifyData.artist.length > 25
-                    ? `${spotifyData.artist.substring(0, 25)}...`
-                    : spotifyData.artist}
+          <div className="spotify-card hidden sm:flex">
+            <FaSpotify className="text-[#1DB954] text-lg flex-shrink-0" />
+            <div className="flex items-center gap-3">
+              <div className="text-right">
+                <div className="text-xs text-[var(--text-primary)] font-medium truncate max-w-[120px]">
+                  {spotifyData.song}
                 </div>
-                {spotifyData.song.length > 25
-                  ? `${spotifyData.song.substring(0, 25)}...`
-                  : spotifyData.song}
+                <div className="text-xs text-[var(--text-secondary)] truncate max-w-[120px]">
+                  {spotifyData.artist}
+                </div>
               </div>
               {spotifyData.cover && (
                 <Image
-                  width={100}
-                  height={100}
+                  width={32}
+                  height={32}
                   src={spotifyData.cover}
                   alt="Album cover"
-                  className="w-10 h-10 ml-4 rounded-md"
+                  className="w-8 h-8 rounded-md"
                 />
               )}
             </div>
           </div>
         ) : (
-          <div className="flex items-center justify-center">
-            <span className="mr-2">Not listening to anything</span>
-            <FaSpotify className="text-xl mt-1" />
+          <div className="hidden sm:flex items-center gap-2 text-xs text-[var(--text-secondary)]">
+            <FaSpotify className="text-[#1DB954]" />
+            <span>Not playing</span>
           </div>
         )}
       </div>

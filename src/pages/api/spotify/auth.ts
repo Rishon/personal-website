@@ -3,7 +3,7 @@ import { exchange } from "@/lib/SpotifyLib";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const isBlocked = process.env.NEXT_PUBLIC_SPOTIFY_OAUTH === "false";
 

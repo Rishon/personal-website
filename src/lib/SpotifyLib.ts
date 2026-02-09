@@ -41,7 +41,7 @@ export async function exchange(code: string): Promise<TokenData> {
         "Spotify API error response:",
         text,
         "Status:",
-        response.status
+        response.status,
       );
       throw new Error(`Failed to exchange code: ${text || "Unknown error"}`);
     }
@@ -102,7 +102,7 @@ export async function refreshAccessToken(): Promise<string> {
         "Spotify refresh token error:",
         text,
         "Status:",
-        response.status
+        response.status,
       );
 
       throw new Error(`Failed to refresh token: ${text || "Unknown error"}`);
