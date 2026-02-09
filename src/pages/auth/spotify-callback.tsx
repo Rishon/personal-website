@@ -31,7 +31,7 @@ export default function SpotifyCallback() {
             "API response error:",
             errorText,
             "Status:",
-            response.status
+            response.status,
           );
           setError(`Failed to exchange code: ${errorText || "Unknown error"}`);
           return;
@@ -54,7 +54,7 @@ export default function SpotifyCallback() {
         setError(
           `Authentication failed: ${
             error instanceof Error ? error.message : "Unknown error"
-          }`
+          }`,
         );
       }
     };
@@ -70,8 +70,8 @@ export default function SpotifyCallback() {
           {error
             ? error
             : code
-            ? "Processing authentication..."
-            : "No code provided"}
+              ? "Processing authentication..."
+              : "No code provided"}
         </p>
       </div>
     </main>
