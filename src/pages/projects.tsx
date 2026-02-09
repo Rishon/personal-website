@@ -34,14 +34,14 @@ const allProjects: Project[] = [
   {
     title: "Verart",
     description: "A Minecraft marketplace team.",
-    image: "/assets/volunteering/verart_logo.webp",
+    image: "/assets/projects/verart_logo.webp",
     link: "https://verart.org",
   },
   {
     title: "PokeSMP",
     description:
       "An immersive Cobblemon Minecraft server experience for Pokémon fans.",
-    image: "/assets/volunteering/pokesmp_logo.webp",
+    image: "/assets/projects/pokesmp_logo.webp",
     link: "https://pokesmp.net",
   },
   {
