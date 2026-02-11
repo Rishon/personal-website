@@ -37,7 +37,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            cd /home
+            cd /opt/github
 
             if [ ! -d "personal-website" ]; then
               gh repo clone Rishon/personal-website
@@ -47,7 +47,7 @@ jobs:
             git reset --hard origin/master
             git pull origin
 
-            cd /home/personal-website && bun install
+            cd /opt/github/personal-website && bun install
             rm .env -f
             rm .env.production -f
             echo "PORT=${{ secrets.PORT }}" >> .env
