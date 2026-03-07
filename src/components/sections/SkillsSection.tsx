@@ -18,11 +18,10 @@ import {
   SiAnsible,
   SiGnubash,
   SiHtml5,
-  SiCss3,
+  SiCss,
 } from "react-icons/si";
 import { TbBrandNextjs, TbBrandCSharp } from "react-icons/tb";
 import { RiJavaLine } from "react-icons/ri";
-import { FaShieldAlt, FaNetworkWired } from "react-icons/fa";
 import { IconType } from "react-icons";
 
 interface SkillCategory {
@@ -48,7 +47,7 @@ const categories: SkillCategory[] = [
       { name: "Next.js", icon: TbBrandNextjs },
       { name: "JavaScript", icon: SiJavascript },
       { name: "HTML", icon: SiHtml5 },
-      { name: "CSS", icon: SiCss3 },
+      { name: "CSS", icon: SiCss },
     ],
   },
   {
