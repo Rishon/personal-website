@@ -27,7 +27,7 @@ const experiences: ExperienceItem[] = [
     title: "Discord Bot Developer",
     company: "RapTV",
     period: "Mar 2022 - Aug 2023",
-    type: "Freelance · Remote",
+    type: "Contract · Remote",
     description: "Hottest Rap News, Videos and Music.",
   },
   {

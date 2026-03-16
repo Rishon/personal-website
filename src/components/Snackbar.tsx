@@ -31,16 +31,18 @@ const Snackbar: React.FC<SnackbarProps> = ({ message, type, onClose }) => {
 
   return (
     <div
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ease-out ${isVisible
-        ? "opacity-100 translate-y-0"
-        : "opacity-0 -translate-y-4 pointer-events-none"
-        }`}
+      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ease-out ${
+        isVisible
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 -translate-y-4 pointer-events-none"
+      }`}
     >
       <div
-        className={`flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg backdrop-blur-md border ${type === "success"
-          ? "bg-emerald-500/90 border-emerald-400/50"
-          : "bg-red-500/90 border-red-400/50"
-          }`}
+        className={`flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg backdrop-blur-md border ${
+          type === "success"
+            ? "bg-emerald-500/90 border-emerald-400/50"
+            : "bg-red-500/90 border-red-400/50"
+        }`}
       >
         {type === "success" ? (
           <FaCheckCircle className="text-white text-lg flex-shrink-0" />
