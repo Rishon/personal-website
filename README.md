@@ -26,6 +26,9 @@ Create a `.env.development` or `.env.production` file based on your environment 
 ```.env
 # Turnstile
 NEXT_PUBLIC_TURNSTILE_SITE_KEY=
+
+# Google Analytics
+NEXT_PUBLIC_GA_ID=
 ```
 
 ### Backend:

@@ -64,6 +64,7 @@ jobs:
             echo "SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }}" >> .env
             echo "NEXT_PUBLIC_SPOTIFY_CLIENT_ID=${{ secrets.NEXT_PUBLIC_SPOTIFY_CLIENT_ID }}" >> .env.production
             echo "NEXT_PUBLIC_SPOTIFY_OAUTH=${{ secrets.NEXT_PUBLIC_SPOTIFY_OAUTH }}" >> .env.production
+            echo "NEXT_PUBLIC_GA_ID=${{ secrets.NEXT_PUBLIC_GA_ID }}" >> .env.production
 
             docker build . -t personal-website
 
