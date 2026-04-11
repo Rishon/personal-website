@@ -1,52 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
-
-interface Project {
-  title: string;
-  description: string;
-  image: string;
-  link: string;
-  isGithub?: boolean;
-}
-
-const projects: Project[] = [
-  {
-    title: "Zeraph",
-    description:
-      "Real-time DDoS protection for game servers, keeping communities secure.",
-    image: "/assets/projects/zeraph_logo.webp",
-    link: "https://zeraph.app",
-  },
-  {
-    title: "Server Tracker",
-    description:
-      "Track Minecraft server players with real-time graphs and analytics.",
-    image: "/assets/projects/server_tracker_logo.webp",
-    link: "https://track.rishon.systems",
-  },
-  {
-    title: "NovaFrame",
-    description: "AI-powered platform for generating and transforming visuals.",
-    image: "/assets/projects/novaframe_logo.webp",
-    link: "https://novaframe.io",
-  },
-  {
-    title: "Sync",
-    description:
-      "Minecraft Paper plugin that syncs player data between instances.",
-    image: "/assets/projects/sync_logo.webp",
-    link: "https://github.com/Rishon/sync",
-    isGithub: true,
-  },
-];
+import { highlightedProjects } from "../config/ProjectsConfig";
 
 export default function ProjectsSection() {
   return (
     <section className="animate-section animation-delay-300">
       <h2 className="section-title">Highlighted Projects</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {projects.map((project) => (
+        {highlightedProjects.map((project) => (
           <Link
             key={project.title}
             href={project.link}
@@ -56,12 +18,19 @@ export default function ProjectsSection() {
           >
             <div className="flex items-start gap-4">
               <div className="relative w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-[var(--bg-tertiary)]">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                />
+                {project.emoji ? (
+                  <span className="text-3xl flex items-center justify-center h-full">
+                    {project.emoji}
+                  </span>
+                ) : (
+                  <Image
+                    src={project.image || ""}
+                    alt={project.title}
+                    fill
+                    sizes="48px"
+                    className="object-cover"
+                  />
+                )}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">

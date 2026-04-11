@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FaCheckCircle, FaExclamationCircle, FaTimes } from "react-icons/fa";
 
 interface SnackbarProps {
@@ -10,6 +10,13 @@ interface SnackbarProps {
 const Snackbar: React.FC<SnackbarProps> = ({ message, type, onClose }) => {
   const [isVisible, setIsVisible] = useState(false);
 
+  const handleClose = useCallback(() => {
+    setIsVisible(false);
+    setTimeout(() => {
+      onClose();
+    }, 300);
+  }, [onClose]);
+
   useEffect(() => {
     setTimeout(() => setIsVisible(true), 10);
 
@@ -20,14 +27,7 @@ const Snackbar: React.FC<SnackbarProps> = ({ message, type, onClose }) => {
     return () => {
       clearTimeout(timer);
     };
-  }, []);
-
-  const handleClose = () => {
-    setIsVisible(false);
-    setTimeout(() => {
-      onClose();
-    }, 300);
-  };
+  }, [handleClose]);
 
   return (
     <div

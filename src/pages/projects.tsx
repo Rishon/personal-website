@@ -1,58 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
-
-interface Project {
-  title: string;
-  description: string;
-  image: string;
-  link: string;
-  isGithub?: boolean;
-}
-
-const allProjects: Project[] = [
-  {
-    title: "Zeraph",
-    description: "Real-time DDoS protection for game servers.",
-    image: "/assets/projects/zeraph_logo.webp",
-    link: "https://zeraph.app",
-  },
-  {
-    title: "Server Tracker",
-    description:
-      "Track Minecraft server players with real-time graphs. Monitor player counts and server status.",
-    image: "/assets/projects/server_tracker_logo.webp",
-    link: "https://track.rishon.systems",
-  },
-  {
-    title: "NovaFrame",
-    description:
-      "AI-powered creative platform for generating, enhancing, and transforming visuals with speed and precision.",
-    image: "/assets/projects/novaframe_logo.webp",
-    link: "https://novaframe.io",
-  },
-  {
-    title: "Verart",
-    description: "A Minecraft marketplace team.",
-    image: "/assets/projects/verart_logo.webp",
-    link: "https://verart.org",
-  },
-  {
-    title: "PokeSMP",
-    description:
-      "An immersive Cobblemon Minecraft server experience for Pokémon fans.",
-    image: "/assets/projects/pokesmp_logo.webp",
-    link: "https://pokesmp.net",
-  },
-  {
-    title: "Sync",
-    description:
-      "Minecraft Paper plugin that syncs player activity and data between instances seamlessly.",
-    image: "/assets/projects/sync_logo.webp",
-    link: "https://github.com/Rishon/sync",
-    isGithub: true,
-  },
-];
+import { allProjects } from "../components/config/ProjectsConfig";
 
 export default function Projects() {
   return (
@@ -60,7 +9,7 @@ export default function Projects() {
       <section className="animate-section">
         <h1 className="text-3xl sm:text-4xl font-bold mb-4">Projects</h1>
         <p className="text-[var(--paragraph-color)] max-w-2xl">
-          A collection of projects I've built over the years.
+          A collection of projects I&apos;ve built over the years.
         </p>
       </section>
 
@@ -77,12 +26,19 @@ export default function Projects() {
             >
               <div className="flex items-start gap-4">
                 <div className="relative w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-[var(--bg-tertiary)]">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                  />
+                  {project.emoji ? (
+                    <span className="text-3xl flex items-center justify-center h-full">
+                      {project.emoji}
+                    </span>
+                  ) : (
+                    <Image
+                      src={project.image || ""}
+                      alt={project.title}
+                      fill
+                      sizes="56px"
+                      className="object-cover"
+                    />
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">

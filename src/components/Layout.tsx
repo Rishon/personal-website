@@ -2,6 +2,7 @@
 import Head from "next/head";
 import Script from "next/script";
 import { useRouter } from "next/router";
+import { useCallback, useEffect, useState } from "react";
 
 // Analytics
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -10,6 +11,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ThemeMode from "@/components/ThemeMode";
+import CookieBanner, { ANALYTICS_CONSENT_KEY } from "@/components/CookieBanner";
 
 const SITE_URL = "https://rishon.systems";
 
@@ -57,10 +59,25 @@ const pageMeta: Record<
 
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   const router = useRouter();
+  const [analyticsConsent, setAnalyticsConsent] = useState<boolean | null>(null);
   const routeMeta = pageMeta[router.pathname] ?? pageMeta["/"];
   const canonicalUrl = `${SITE_URL}${router.pathname === "/" ? "" : router.pathname}`;
   const robotsContent =
     "index,follow,noimageindex,max-image-preview:none,max-snippet:-1,max-video-preview:-1";
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
+  useEffect(() => {
+    const storedConsent = localStorage.getItem(ANALYTICS_CONSENT_KEY);
+    if (storedConsent === "true" || storedConsent === "false") {
+      setAnalyticsConsent(storedConsent === "true");
+    }
+  }, []);
+
+  const handleConsentChange = useCallback((consent: boolean) => {
+    setAnalyticsConsent(consent);
+  }, []);
+
+  const shouldLoadAnalytics = Boolean(gaId) && analyticsConsent === true;
 
   return (
     <>
@@ -132,9 +149,10 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         </main>
 
         {/* Google Analytics */}
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
-        )}
+        {shouldLoadAnalytics && <GoogleAnalytics gaId={gaId as string} />}
+
+        {/* Cookie Banner */}
+        <CookieBanner onConsentChange={handleConsentChange} />
 
         {/* Theme Mode */}
         <ThemeMode />
