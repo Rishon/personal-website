@@ -1,6 +1,5 @@
 // React
 import { useEffect, useState } from "react";
-import { FaMapMarkerAlt } from "react-icons/fa";
 
 // Sections
 import ExperienceSection from "@/components/sections/ExperienceSection";
@@ -21,15 +20,10 @@ export default function Home() {
     <div className="space-y-20">
       <section className="animate-section pt-8">
         <div className="space-y-6">
-          <div className="location-badge w-fit">
-            <FaMapMarkerAlt className="text-xs" />
-            <span>Israel</span>
-          </div>
-
           <div className="space-y-2">
             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-              <span className="animated-gradient-text">Hey!</span> I&apos;m
-              Rishon
+              <span className="animated-gradient-text">Hey! </span>
+              I&apos;m Rishon
             </h1>
             <p className="text-lg sm:text-xl text-[var(--text-secondary)]">
               Software Engineer · {age} years old
