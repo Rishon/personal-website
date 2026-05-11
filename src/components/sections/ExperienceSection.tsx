@@ -24,6 +24,13 @@ const experiences: ExperienceItem[] = [
       "Play and get trolled by your viewers in the most awesome ways while generating more revenue.",
   },
   {
+    title: "Software Engineer",
+    company: "Verart",
+    period: "Oct 2022 - Present",
+    type: "Self-employed · Remote",
+    description: "A Minecraft marketplace team.",
+  },
+  {
     title: "Discord Bot Developer",
     company: "RapTV",
     period: "Mar 2022 - Aug 2023",
