@@ -33,6 +33,13 @@ export const highlightedProjects: Project[] = [
 
 export const allProjects: Project[] = [
   {
+    title: "Glade",
+    description:
+      "Community chat platform with Houses, Rooms, Voice, DMs, and end-to-end-encrypted messaging.",
+    image: "/assets/projects/glade_logo.webp",
+    link: "https://glade.chat",
+  },
+  {
     title: "Server Tracker",
     description:
       "Track Minecraft server players with real-time graphs. Monitor player counts and server status.",
