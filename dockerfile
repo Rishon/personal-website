@@ -1,21 +1,19 @@
-FROM node:22-slim
+FROM oven/bun:1
 
-# Environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 
 ARG PORT
 ENV PORT=$PORT
 
-# Set the working directory
-RUN mkdir /app
-COPY . /app
 WORKDIR /app
 
-# Install Bun
-RUN npm i -g bun
-RUN bun install && bun next telemetry disable && bun run build
+COPY . .
 
-# Run entrypoint
+RUN bun install \
+    && bun next telemetry disable \
+    && bun run build
+
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]
