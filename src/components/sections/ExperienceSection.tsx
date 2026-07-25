@@ -8,12 +8,20 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
+    title: "Software Engineer",
+    company: "Verart",
+    period: "Oct 2022 - Present",
+    type: "Self-employed · On-site",
+    description:
+      "Developing and maintaining a Minecraft marketplace platform, including content systems, backend solutions, and networking infrastructure. Building scalable tools and services.",
+  },
+  {
     title: "Maintenance Developer",
     company: "LoverCraft LLC",
-    period: "Jul 2024 - Present",
+    period: "Jul 2024 - Jul 2026",
     type: "Contract · Remote",
     description:
-      "LoverCraft is a Minecraft server network ran by the YouTuber LoverFella.",
+      "Maintained and improved infrastructure for LoverCraft, a Minecraft server network operated by YouTuber LoverFella, focusing on reliability, bug fixes, feature updates, and long-term server stability.",
   },
   {
     title: "Game Developer",
@@ -21,28 +29,23 @@ const experiences: ExperienceItem[] = [
     period: "Jun 2023 - Jun 2024",
     type: "Full-time · Hybrid",
     description:
-      "Play and get trolled by your viewers in the most awesome ways while generating more revenue.",
-  },
-  {
-    title: "Software Engineer",
-    company: "Verart",
-    period: "Oct 2022 - Present",
-    type: "Self-employed · Remote",
-    description: "A Minecraft marketplace team.",
+      "Developed interactive gaming experiences that allowed creators to engage their audiences through viewer-driven challenges, entertainment features, and monetization-focused gameplay mechanics.",
   },
   {
     title: "Discord Bot Developer",
     company: "RapTV",
     period: "Mar 2022 - Aug 2023",
     type: "Contract · Remote",
-    description: "Hottest Rap News, Videos and Music.",
+    description:
+      "Developed and maintained Discord automation systems for RapTV, a leading rap media platform, improving community engagement through custom bots, integrations, and moderation tools.",
   },
   {
     title: "Security Control Room Operator",
     company: "Discount Bank",
     period: "Aug 2022 - Jan 2023",
     type: "Part-time · On-site",
-    description: "Financial services company.",
+    description:
+      "Monitored security operations for a major financial institution, handling incident response, surveillance systems, and coordination with security teams to maintain a safe environment.",
   },
   {
     title: "Java Developer",
@@ -50,7 +53,7 @@ const experiences: ExperienceItem[] = [
     period: "Jan 2017 - Dec 2022",
     type: "Self-employed · Remote",
     description:
-      "TopStrix is the largest Minecraft network in Israel with over 100,000 unique players and over 3,000 daily login sessions.",
+      "Developed software solutions for TopStrix, one of Israel's largest Minecraft networks, supporting over 100,000 unique players and thousands of daily sessions through custom Java-based systems and server infrastructure.",
   },
 ];
 

@@ -29,6 +29,14 @@ export const highlightedProjects: Project[] = [
     link: "https://mikud.rishon.systems",
     isGithub: false,
   },
+  {
+    title: "Glade",
+    description:
+      "Community chat platform with Houses, Rooms, Voice, DMs, and end-to-end-encrypted messaging.",
+    image: "/assets/projects/glade_logo.webp",
+    link: "https://glade.chat",
+    isGithub: false,
+  },
 ];
 
 export const allProjects: Project[] = [
