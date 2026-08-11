@@ -11,7 +11,7 @@ const experiences: ExperienceItem[] = [
     title: "Software Engineer",
     company: "Verart",
     period: "Oct 2022 - Present",
-    type: "Self-employed · On-site",
+    type: "Full-time · On-site",
     description:
       "Developing and maintaining a Minecraft marketplace platform, including content systems, backend solutions, and networking infrastructure. Building scalable tools and services.",
   },
