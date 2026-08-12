@@ -47,3 +47,4 @@ public/sitemap-*.xml
 
 # IDE
 .vscode/
+speed-data.json

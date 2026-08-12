@@ -1,63 +1,59 @@
 # Personal Website
 
-## Getting Started
+Next.js · TypeScript · Tailwind · Bun · Docker
 
-These instructions will help you set up the project on your local machine for development and testing purposes.
+## Setup
 
-### Installation
-
-1. Clone the repository:
-
-   ```sh
-   git clone https://github.com/Rishon/personal-website
-   cd personal-website
-   ```
-
-2. Install the dependencies:
-
-   `npm install` / `yarn install` / `bun install`
-
-### Environment Variables
-
-### Frontend:
-
-Create a `.env.development` or `.env.production` file based on your environment and fill out the keys and values:
-
-```.env
-# Turnstile
-NEXT_PUBLIC_TURNSTILE_SITE_KEY=
-
-# Google Analytics
-NEXT_PUBLIC_GA_ID=
+```sh
+git clone https://github.com/Rishon/personal-website
+cd personal-website
+bun install
 ```
 
-### Backend:
+## Environment
 
-Create a `.env` file and fill out the keys and values:
+Create `.env`:
 
 ```.env
 # Server
 PORT=3000
+NEXT_PUBLIC_SITE_URL=
+
+# Turnstile
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=
+TURNSTILE_SECRET_KEY=
+
+# Discord presence
+NEXT_PUBLIC_DISCORD_ID=
+
+# Spotify
+NEXT_PUBLIC_SPOTIFY_CLIENT_ID=
+NEXT_PUBLIC_SPOTIFY_OAUTH=
+SPOTIFY_CLIENT_SECRET=
 
 # SMTP
 MAIL_HOST=
-MAIL_USERNAME=
 MAIL_PORT=465
 MAIL_SECURE=true
+MAIL_USERNAME=
 MAIL_PASSWORD=
+MAIL_TO=
 
-# Turnstile
-TURNSTILE_SECRET_KEY=
+# Analytics
+NEXT_PUBLIC_GA_ID=
+NEXT_PUBLIC_CLARITY_ID=
 ```
 
-### Running in development
+## Scripts
 
-To start, run the following:
+```sh
+bun run dev      # development
+bun run build    # production build
+bun run start    # serve build
+bun run lint     # eslint
+```
 
-`npm run dev` / `yarn run dev` / `bun run dev`
+## Spotify
 
-### Building
-
-To build, run the following:
-
-`npm run build` / `yarn run build` / `bun run build`
+Register `http://127.0.0.1:3000/auth/spotify-callback`, visit `/auth/spotify-navigate`, then set
+`NEXT_PUBLIC_SPOTIFY_OAUTH=false`.

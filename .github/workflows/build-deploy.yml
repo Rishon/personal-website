@@ -2,7 +2,7 @@ name: Build and Deploy
 
 on:
   push:
-    branches: [master]
+    branches: [ master ]
 
 concurrency:
   group: deploy-${{ github.ref }}
@@ -52,13 +52,14 @@ jobs:
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
           MAIL_TO: ${{ secrets.MAIL_TO }}
+          SPEED_API_SECRET: ${{ secrets.SPEED_API_SECRET }}
           COMMIT_SHA: ${{ github.sha }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          envs: PORT,NEXT_PUBLIC_SITE_URL,NEXT_PUBLIC_DISCORD_ID,NEXT_PUBLIC_TURNSTILE_SITE_KEY,TURNSTILE_SECRET_KEY,NEXT_PUBLIC_SPOTIFY_CLIENT_ID,NEXT_PUBLIC_SPOTIFY_OAUTH,SPOTIFY_CLIENT_SECRET,NEXT_PUBLIC_GA_ID,NEXT_PUBLIC_CLARITY_ID,MAIL_HOST,MAIL_PORT,MAIL_SECURE,MAIL_USERNAME,MAIL_PASSWORD,MAIL_TO,COMMIT_SHA
+          envs: PORT,NEXT_PUBLIC_SITE_URL,NEXT_PUBLIC_DISCORD_ID,NEXT_PUBLIC_TURNSTILE_SITE_KEY,TURNSTILE_SECRET_KEY,NEXT_PUBLIC_SPOTIFY_CLIENT_ID,NEXT_PUBLIC_SPOTIFY_OAUTH,SPOTIFY_CLIENT_SECRET,NEXT_PUBLIC_GA_ID,NEXT_PUBLIC_CLARITY_ID,MAIL_HOST,MAIL_PORT,MAIL_SECURE,MAIL_USERNAME,MAIL_PASSWORD,MAIL_TO,SPEED_API_SECRET,COMMIT_SHA
           script: |
             set -e
 
@@ -91,10 +92,12 @@ jobs:
               echo "MAIL_USERNAME=${MAIL_USERNAME}"
               echo "MAIL_PASSWORD=${MAIL_PASSWORD}"
               echo "MAIL_TO=${MAIL_TO}"
+              echo "SPEED_API_SECRET=${SPEED_API_SECRET}"
             } > .env
             chmod 600 .env
 
             [ -f spotify-data.json ] || echo '{}' > spotify-data.json
+            [ -f speed-data.json ] || echo '{}' > speed-data.json
 
             docker build . -t personal-website \
               --build-arg NEXT_PUBLIC_SITE_URL="${NEXT_PUBLIC_SITE_URL}" \
