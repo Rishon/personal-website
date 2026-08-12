@@ -1,5 +1,21 @@
+import { execSync } from "node:child_process";
+
+/** Short commit the sheet was printed from - stamped into the desk footer. */
+function buildId() {
+  if (process.env.NEXT_PUBLIC_BUILD_ID) return process.env.NEXT_PUBLIC_BUILD_ID;
+  try {
+    return execSync("git rev-parse --short HEAD").toString().trim();
+  } catch {
+    return "dev";
+  }
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  allowedDevOrigins: ["127.0.0.1", "localhost"],
+  env: {
+    NEXT_PUBLIC_BUILD_ID: buildId(),
+  },
   images: {
     remotePatterns: [
       {

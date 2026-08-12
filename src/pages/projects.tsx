@@ -1,84 +1,48 @@
-import Image from "next/image";
 import Link from "next/link";
-import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
-import { allProjects } from "../components/config/ProjectsConfig";
+import WordSettle from "@/components/WordSettle";
+import ProjectGrid from "@/components/ProjectGrid";
+import { LuGithub } from "react-icons/lu";
+import { allProjects } from "@/config/projects";
 
 export default function Projects() {
   return (
-    <div className="space-y-12 py-8">
-      <section className="animate-section">
-        <h1 className="text-3xl sm:text-4xl font-bold mb-4">Projects</h1>
-        <p className="text-[var(--paragraph-color)] max-w-2xl">
-          A collection of projects I&apos;ve built over the years.
+    <div className="flex min-h-0 flex-1 flex-col gap-v-md">
+      <div className="flex-shrink-0">
+        <h1 className="mb-1 text-title">
+          <WordSettle delay={0.05}>Work</WordSettle>
+        </h1>
+        <p className="max-w-prose text-lede">
+          <WordSettle delay={0.14}>
+            Things I&apos;ve built - some shipped to real users, some still
+            running quietly in the background.
+          </WordSettle>
         </p>
-      </section>
+      </div>
 
-      {/* Projects */}
-      <section className="animate-section animation-delay-100">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {allProjects.map((project) => (
-            <Link
-              key={project.title}
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-card group"
-            >
-              <div className="flex items-start gap-4">
-                <div className="relative w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-[var(--bg-tertiary)]">
-                  {project.emoji ? (
-                    <span className="text-3xl flex items-center justify-center h-full">
-                      {project.emoji}
-                    </span>
-                  ) : (
-                    <Image
-                      src={project.image || ""}
-                      alt={project.title}
-                      fill
-                      sizes="56px"
-                      className="object-cover"
-                    />
-                  )}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-semibold text-lg text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
-                      {project.title}
-                    </h3>
-                    {project.isGithub ? (
-                      <FaGithub className="text-sm text-[var(--text-secondary)]" />
-                    ) : (
-                      <FaExternalLinkAlt className="text-xs text-[var(--text-secondary)]" />
-                    )}
-                  </div>
-                  <p className="text-sm text-[var(--paragraph-color)] leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <div
+        className="min-h-0 flex-1 animate-rise opacity-0 motion-reduce:animate-none motion-reduce:opacity-100"
+        style={{ animationDelay: "0.3s" }}
+      >
+        <ProjectGrid projects={allProjects} />
+      </div>
 
-      <section className="animate-section animation-delay-200">
-        <div className="glass-card p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
-            <h3 className="font-semibold text-lg mb-1">More on GitHub</h3>
-            <p className="text-sm text-[var(--text-secondary)]">
-              Check out my other projects and contributions
-            </p>
-          </div>
-          <Link
-            href="https://github.rishon.systems"
-            target="_blank"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--bg-tertiary)] hover:bg-[var(--accent-subtle)] border border-[var(--border-subtle)] hover:border-[var(--accent)] rounded-lg text-sm font-medium transition-all duration-200"
-          >
-            <FaGithub />
-            View GitHub
-          </Link>
-        </div>
-      </section>
+      <div
+        className="flex flex-shrink-0 items-center justify-between gap-4 border-t border-rule-subtle pt-v-sm animate-rise opacity-0 motion-reduce:animate-none motion-reduce:opacity-100"
+        style={{ animationDelay: "0.4s" }}
+      >
+        <p className="text-xs text-ink-muted">
+          Other experiments and contributions live on GitHub.
+        </p>
+        <Link
+          href="https://github.rishon.systems"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex flex-shrink-0 items-center gap-2 rounded-[10px] px-3 py-2 text-xs font-medium text-ink shadow-hairline transition-colors duration-200 hover:bg-ink-hover"
+        >
+          <LuGithub className="h-3.5 w-3.5" />
+          View GitHub
+        </Link>
+      </div>
     </div>
   );
 }

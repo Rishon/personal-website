@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { LuChartNoAxesColumn } from "react-icons/lu";
 
 export const ANALYTICS_CONSENT_KEY = "analytics-consent";
 
@@ -21,38 +22,44 @@ export default function CookieBanner({ onConsentChange }: CookieBannerProps) {
     setIsVisible(true);
   }, [onConsentChange]);
 
+  // Persists consent and hides the banner
   const saveConsent = (consent: boolean) => {
     localStorage.setItem(ANALYTICS_CONSENT_KEY, String(consent));
     onConsentChange(consent);
     setIsVisible(false);
   };
 
-  if (!isVisible) {
-    return null;
-  }
+  if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-4 z-50 px-4 sm:px-6">
-      <div className="mx-auto w-full max-w-3xl rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]/95 p-4 shadow-2xl backdrop-blur-md sm:p-5">
-        <p className="text-sm font-semibold text-[var(--text-primary)]">
-          Analytics cookies
-        </p>
-        <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)]">
-          Google Analytics helps me track visits and device stats. Accept to
-          enable cookies, or decline for no tracking.
-        </p>
-        <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:justify-end">
+    <div className="fixed inset-x-0 bottom-[calc(var(--dock-height)+16px)] z-[70] px-4 md:px-6">
+      <div className="mx-auto flex max-w-column animate-rise flex-col gap-3 rounded-2xl bg-paper-elev p-4 opacity-0 shadow-[0_0_0_1px_var(--rule),var(--shadow-inset),0_18px_40px_-12px_rgba(0,0,0,0.55)] motion-reduce:animate-none motion-reduce:opacity-100 sm:flex-row sm:items-center sm:gap-5 sm:py-3.5">
+        <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-accent-20 text-accent max-sm:hidden">
+          <LuChartNoAxesColumn className="h-4 w-4" />
+        </span>
+
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-medium tracking-tight text-ink">
+            Analytics cookies
+          </p>
+          <p className="text-xs leading-relaxed text-ink-muted">
+            Google Analytics records visits and device stats, Microsoft Clarity
+            records how pages are used. Decline for no tracking.
+          </p>
+        </div>
+
+        <div className="flex flex-shrink-0 gap-2">
           <button
             type="button"
             onClick={() => saveConsent(false)}
-            className="rounded-lg border border-[var(--border-subtle)] px-4 py-2 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:border-[var(--accent)] hover:text-[var(--text-primary)]"
+            className="flex-1 rounded-[10px] px-3.5 py-2 text-xs font-medium text-ink-muted shadow-hairline transition-colors duration-200 hover:bg-ink-hover hover:text-ink sm:flex-none"
           >
             Decline
           </button>
           <button
             type="button"
             onClick={() => saveConsent(true)}
-            className="rounded-lg border border-[var(--accent)] bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[var(--accent-hover)]"
+            className="flex-1 rounded-[10px] bg-accent px-3.5 py-2 text-xs font-medium text-white transition-colors duration-200 hover:bg-accent-hover sm:flex-none"
           >
             Accept
           </button>

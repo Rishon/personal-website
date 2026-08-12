@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { exchange } from "@/lib/SpotifyLib";
+import { exchange } from "@/lib/spotify";
 
 export default async function handler(
   req: NextApiRequest,

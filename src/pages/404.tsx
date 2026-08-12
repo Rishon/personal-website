@@ -1,23 +1,29 @@
 import Link from "next/link";
+import WordSettle from "@/components/WordSettle";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] text-center py-12">
-      <div className="animate-section">
-        <h1 className="text-6xl sm:text-8xl font-bold text-[var(--text-secondary)] mb-4">
-          404
-        </h1>
-        <h2 className="text-xl sm:text-2xl font-semibold mb-4">
-          Page Not Found
-        </h2>
-        <p className="text-[var(--paragraph-color)] mb-8 max-w-md">
-          The page you&apos;re looking for doesn&apos;t exist or has been moved.
-        </p>
+    <div className="flex min-h-0 flex-1 flex-col justify-center">
+      <p className="mb-2 font-editorial text-6xl font-extralight italic leading-none text-accent md:text-7xl">
+        404
+      </p>
+
+      <h1 className="mb-1 text-title">
+        <WordSettle delay={0.05}>This page isn&apos;t here.</WordSettle>
+      </h1>
+
+      <p className="mb-v-md max-w-prose text-lede">
+        <WordSettle delay={0.14}>
+          It either moved, or it never existed in the first place.
+        </WordSettle>
+      </p>
+
+      <div>
         <Link
           href="/"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-lg font-medium transition-all duration-200 hover:translate-y-[-2px]"
+          className="inline-flex items-center gap-2 rounded-[10px] px-4 py-2 text-sm font-medium text-ink shadow-hairline transition-colors duration-200 hover:bg-ink-hover"
         >
-          Go Home
+          ← Back home
         </Link>
       </div>
     </div>
