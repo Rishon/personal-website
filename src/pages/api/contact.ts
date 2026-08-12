@@ -1,5 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import dns from "node:dns";
 import nodemailer from "nodemailer";
+import { TURNSTILE_SECRET_KEY } from "@/lib/turnstile";
+
+dns.setDefaultResultOrder("ipv4first");
 
 export default async function handler(
   req: NextApiRequest,
@@ -17,26 +21,23 @@ export default async function handler(
       return res.status(400).json({ error: "Captcha validation failed" });
     }
 
-    const mailHost = process.env.MAIL_HOST;
-    const mailPort = process.env.MAIL_PORT;
     const mailUser = process.env.MAIL_USERNAME;
-    const mailPass = process.env.MAIL_PASSWORD;
-    const mailSecure = process.env.MAIL_SECURE;
 
     const transporter = nodemailer.createTransport({
-      host: mailHost,
-      port: mailPort,
-      secure: mailSecure,
+      host: process.env.MAIL_HOST,
+      port: Number(process.env.MAIL_PORT) || 465,
+      secure: process.env.MAIL_SECURE !== "false",
       auth: {
         user: mailUser,
-        pass: mailPass,
+        pass: process.env.MAIL_PASSWORD,
       },
     });
 
     try {
       const mailOptions = {
         from: mailUser,
-        to: mailUser,
+        to: process.env.MAIL_TO || mailUser,
+        replyTo: email,
         subject: "[rishon.systems] New submission from contact form",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
@@ -67,7 +68,7 @@ export default async function handler(
 async function validateCaptcha(token: string): Promise<boolean> {
   try {
     const body = new URLSearchParams({
-      secret: process.env.TURNSTILE_SECRET_KEY ?? "",
+      secret: TURNSTILE_SECRET_KEY,
       response: token,
     });
 

@@ -1,9 +1,10 @@
 import fs from "fs";
 import path from "path";
+import { SPOTIFY_REDIRECT_URI } from "@/lib/site";
 
 const client_id = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID!;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET!;
-const redirect_uri = "/auth/spotify-callback";
+const redirect_uri = SPOTIFY_REDIRECT_URI;
 
 interface TokenData {
   access_token: string;

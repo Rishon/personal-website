@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec bun start -- -H 0.0.0.0 -p ${PORT}
+exec bun run start -- -H 0.0.0.0 -p "${PORT:-3000}"

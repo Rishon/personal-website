@@ -1,66 +1,84 @@
-// React
 import { useEffect, useState } from "react";
-
-// Sections
-import ExperienceSection from "@/components/sections/ExperienceSection";
-import SkillsSection from "@/components/sections/SkillsSection";
-import ProjectsSection from "@/components/sections/ProjectsSection";
 import Link from "next/link";
+import WordSettle from "@/components/WordSettle";
+import TechToken from "@/components/TechToken";
+import ExperienceSection from "@/components/ExperienceSection";
+import { SiDocker, SiKotlin, SiTypescript } from "react-icons/si";
+import { TbBrandNextjs } from "react-icons/tb";
+
+const BIRTH_DATE = Date.UTC(2004, 0, 20);
 
 export default function Home() {
-  const [age, setAge] = useState(22);
+  const [age, setAge] = useState<number | null>(null);
 
   useEffect(() => {
-    const birthDate = new Date(Date.UTC(2004, 0, 20)).getTime();
-    const now = Date.now();
-    setAge(Math.floor((now - birthDate) / (1000 * 60 * 60 * 24 * 365.25)));
+    const years = (Date.now() - BIRTH_DATE) / (1000 * 60 * 60 * 24 * 365.25);
+    setAge(Math.floor(years));
   }, []);
 
   return (
-    <div className="space-y-20">
-      <section className="animate-section pt-8">
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-              <span className="animated-gradient-text">Hey! </span>
-              I&apos;m Rishon
-            </h1>
-            <p className="text-lg sm:text-xl text-[var(--text-secondary)]">
-              Software Engineer · {age} years old
-            </p>
-          </div>
+    <div className="flex min-h-0 flex-1 flex-col gap-v-md">
+      <div className="flex-shrink-0">
+        <h1 className="mb-1 text-title">
+          <WordSettle delay={0.05}>Hey, I&apos;m Rishon.</WordSettle>
+        </h1>
+        <p className="text-lede">
+          <WordSettle delay={0.16}>
+            {`Software engineer${age ? `, ${age},` : ","} based in Israel.`}
+          </WordSettle>
+        </p>
+      </div>
 
-          <p className="text-base sm:text-lg text-[var(--paragraph-color)] leading-relaxed max-w-2xl">
-            I&apos;m a self-taught software engineer passionate about building
-            tools and exploring new technologies. I love crafting solutions that
-            make a difference.
-          </p>
-        </div>
-      </section>
+      <div className="max-w-prose flex-shrink-0 text-body">
+        <WordSettle delay={0.3}>
+          I&apos;m a self-taught software engineer from Israel. I like building
+          tools, and sitting with a problem a little past what I already know.
+        </WordSettle>
+      </div>
 
-      {/* Experience Section */}
-      <ExperienceSection />
+      <div className="max-w-prose flex-shrink-0 text-body">
+        <WordSettle delay={0.5}>
+          Most of my work splits two ways: web tools in{" "}
+          <TechToken icon={SiTypescript} label="TypeScript" color="#3178c6" />{" "}
+          and <TechToken icon={TbBrandNextjs} label="Next.js" />, and game
+          server infrastructure in{" "}
+          <TechToken icon={SiKotlin} label="Kotlin" color="#7f52ff" /> -
+          proxies, plugin libraries, and{" "}
+          <TechToken icon={SiDocker} label="Docker" color="#2496ed" /> for
+          scaling.
+        </WordSettle>
+      </div>
 
-      {/* Skills Section */}
-      <SkillsSection />
-
-      {/* Projects Section */}
-      <ProjectsSection />
-
-      {/* Contact CTA */}
-      <section className="animate-section animation-delay-500">
-        <div className="glass-card p-8 text-center">
-          <h2 className="text-2xl font-bold mb-3">Let&apos;s Connect</h2>
-          <p className="text-sm sm:text-base text-[var(--text-secondary)] mb-6">
-            Have a question, or just want to say hi?
-          </p>
+      <div className="max-w-prose flex-shrink-0 text-body">
+        <WordSettle delay={0.7}>
+          Right now I&apos;m building{" "}
           <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-lg font-medium transition-all duration-200 hover:translate-y-[-2px]"
+            href="https://glade.chat"
+            target="_blank"
+            className="font-medium text-ink underline decoration-accent-40 underline-offset-4 transition-colors hover:text-accent"
           >
-            Get in Touch
+            Glade
+          </Link>{" "}
+          and{" "}
+          <Link
+            href="https://zeraph.app"
+            target="_blank"
+            className="font-medium text-ink underline decoration-accent-40 underline-offset-4 transition-colors hover:text-accent"
+          >
+            Zeraph
           </Link>
-        </div>
+          .
+        </WordSettle>
+      </div>
+
+      <section
+        className="flex min-h-0 flex-1 flex-col animate-rise opacity-0 motion-reduce:animate-none motion-reduce:opacity-100"
+        style={{ animationDelay: "0.88s" }}
+      >
+        <h2 className="mb-v-xs flex-shrink-0 text-label font-medium uppercase text-ink-faint">
+          Where I&apos;ve worked
+        </h2>
+        <ExperienceSection />
       </section>
     </div>
   );

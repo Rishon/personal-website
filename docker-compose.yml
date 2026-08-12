@@ -6,7 +6,9 @@ services:
     network_mode: "host"
     env_file:
       - .env
-      - .env.production
+    volumes:
+      - ./spotify-data.json:/app/spotify-data.json
+      - ./speed-data.json:/app/speed-data.json
     dns:
       - 8.8.8.8
       - 1.1.1.1

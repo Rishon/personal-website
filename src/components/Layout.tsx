@@ -1,19 +1,15 @@
-// Next.js
 import Head from "next/head";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-
-// Analytics
 import { GoogleAnalytics } from "@next/third-parties/google";
 
-// Components
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import ThemeMode from "@/components/ThemeMode";
+import Dock from "@/components/Dock";
+import DeskFooter from "@/components/DeskFooter";
+import StatusBar from "@/components/StatusBar";
 import CookieBanner, { ANALYTICS_CONSENT_KEY } from "@/components/CookieBanner";
-
-const SITE_URL = "https://rishon.systems";
+import { applyTheme } from "@/lib/theme";
+import { SITE_URL } from "@/lib/site";
 
 const pageMeta: Record<
   string,
@@ -33,7 +29,7 @@ const pageMeta: Record<
     type: "profile",
   },
   "/projects": {
-    title: "Projects | Rishon Jaffe",
+    title: "Work | Rishon Jaffe",
     description:
       "Explore projects by Rishon Jaffe, including SaaS tools, developer products, and open-source work across web and game ecosystems.",
     keywords:
@@ -42,10 +38,8 @@ const pageMeta: Record<
   },
   "/contact": {
     title: "Contact | Rishon Jaffe",
-    description:
-      "Contact Rishon Jaffe for technical consulting or software engineering opportunities.",
-    keywords:
-      "contact Rishon Jaffe, software engineer contact, technical consulting",
+    description: "Contact Rishon Jaffe.",
+    keywords: "contact Rishon Jaffe, software engineer contact",
     type: "website",
   },
   "/404": {
@@ -59,12 +53,15 @@ const pageMeta: Record<
 
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   const router = useRouter();
-  const [analyticsConsent, setAnalyticsConsent] = useState<boolean | null>(null);
+  const [analyticsConsent, setAnalyticsConsent] = useState<boolean | null>(
+    null,
+  );
   const routeMeta = pageMeta[router.pathname] ?? pageMeta["/"];
   const canonicalUrl = `${SITE_URL}${router.pathname === "/" ? "" : router.pathname}`;
   const robotsContent =
     "index,follow,noimageindex,max-image-preview:none,max-snippet:-1,max-video-preview:-1";
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
 
   useEffect(() => {
     const storedConsent = localStorage.getItem(ANALYTICS_CONSENT_KEY);
@@ -73,20 +70,25 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     }
   }, []);
 
+  useEffect(() => {
+    applyTheme();
+    const id = setInterval(applyTheme, 60000);
+    return () => clearInterval(id);
+  }, []);
+
   const handleConsentChange = useCallback((consent: boolean) => {
     setAnalyticsConsent(consent);
   }, []);
 
-  const shouldLoadAnalytics = Boolean(gaId) && analyticsConsent === true;
+  const consented = analyticsConsent === true;
 
   return (
     <>
       <Head>
         <title>{routeMeta.title}</title>
-        <link rel="icon" href="/assets/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href={canonicalUrl} />
 
-        {/* Meta Tags */}
         <meta name="description" content={routeMeta.description} />
         <meta name="keywords" content={routeMeta.keywords} />
         <meta name="author" content="Rishon Jaffe" />
@@ -104,10 +106,9 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         <meta name="twitter:description" content={routeMeta.description} />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#0a0a0f" />
+        <meta name="theme-color" content="#14121a" />
       </Head>
 
-      {/* JSON Structured Data */}
       <Script
         id="json-ld"
         type="application/ld+json"
@@ -136,30 +137,29 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         }}
       />
 
-      <div className="min-h-screen flex flex-col">
-        {/* Subtle background gradient */}
-        <div className="fixed inset-0 bg-gradient-subtle pointer-events-none" />
+      <div className="pointer-events-none fixed inset-0 z-0 bg-desk-vignette" />
 
-        {/* Navbar */}
-        <Navbar />
+      <div className="page-panel fixed bottom-dock left-panel right-panel top-panel z-[2] flex flex-col overflow-hidden rounded-2xl max-md:rounded-none">
+        <header className="mx-auto w-full max-w-column flex-shrink-0 px-4 pb-v-sm pt-v-md md:px-6">
+          <StatusBar />
+        </header>
 
-        {/* Content */}
-        <main className="flex-grow flex flex-col items-center px-6 py-12 sm:px-8 lg:px-12 relative z-10">
-          <div className="w-full max-w-3xl">{children}</div>
+        <main className="mx-auto flex w-full min-h-0 max-w-column flex-1 flex-col overflow-hidden px-4 pb-v-md md:px-6">
+          {children}
         </main>
-
-        {/* Google Analytics */}
-        {shouldLoadAnalytics && <GoogleAnalytics gaId={gaId as string} />}
-
-        {/* Cookie Banner */}
-        <CookieBanner onConsentChange={handleConsentChange} />
-
-        {/* Theme Mode */}
-        <ThemeMode />
-
-        {/* Footer */}
-        <Footer />
       </div>
+
+      <Dock />
+      <DeskFooter />
+
+      {consented && gaId && <GoogleAnalytics gaId={gaId} />}
+
+      {consented && clarityId && (
+        <Script id="ms-clarity" strategy="afterInteractive">
+          {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${clarityId}");`}
+        </Script>
+      )}
+      <CookieBanner onConsentChange={handleConsentChange} />
     </>
   );
 };

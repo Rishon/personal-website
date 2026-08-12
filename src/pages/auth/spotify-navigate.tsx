@@ -3,13 +3,14 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
+import { SPOTIFY_REDIRECT_URI } from "@/lib/site";
 
 export default function SpotifyNavigate() {
   const router = useRouter();
 
   useEffect(() => {
     const client_id = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID!;
-    const redirect_uri = "http://localhost:3000/auth/spotify-callback"; // Uses dev URL for local testing
+    const redirect_uri = SPOTIFY_REDIRECT_URI;
     const scope = "user-read-playback-state user-read-currently-playing";
 
     const url = `https://accounts.spotify.com/authorize?${new URLSearchParams({
