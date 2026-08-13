@@ -42,6 +42,9 @@ MAIL_TO=
 # Analytics
 NEXT_PUBLIC_GA_ID=
 NEXT_PUBLIC_CLARITY_ID=
+
+# Quantum app push
+QUANTUM_API_SECRET=
 ```
 
 ## Scripts
@@ -57,3 +60,12 @@ bun run lint     # eslint
 
 Register `http://127.0.0.1:3000/auth/spotify-callback`, visit `/auth/spotify-navigate`, then set
 `NEXT_PUBLIC_SPOTIFY_OAUTH=false`.
+
+## Quantum API
+
+Routes pushed to by the [Quantum](https://github.com/Rishon/Quantum) phone app, bearer `QUANTUM_API_SECRET`.
+
+| Route           | POST                        | GET                | Store                | Stale |
+| --------------- | --------------------------- | ------------------ | -------------------- | ----- |
+| `/api/speed`    | `{kmh}` or `{stopped:true}` | `{driving, kmh}`   | `speed-data.json`    | 2 m   |
+| `/api/location` | `{city}`                    | `{city}`           | `location-data.json` | 6 h   |

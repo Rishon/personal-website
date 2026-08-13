@@ -77,18 +77,22 @@ export default function StatusBar() {
     let cancelled = false;
 
     const load = async () => {
-      try {
-        const res = await fetch("/api/speed");
-        if (!res.ok) return;
-        const data = await res.json();
-        if (cancelled) return;
-        setSpeed(data.driving ? data.kmh : null);
-        setCity(data.city ?? null);
-      } catch {
-        if (cancelled) return;
-        setSpeed(null);
-        setCity(null);
-      }
+      const [speedRes, locationRes] = await Promise.allSettled([
+        fetch("/api/speed").then((r) => (r.ok ? r.json() : null)),
+        fetch("/api/location").then((r) => (r.ok ? r.json() : null)),
+      ]);
+
+      if (cancelled) return;
+
+      const driving =
+        speedRes.status === "fulfilled" && speedRes.value?.driving === true;
+      setSpeed(driving ? speedRes.value.kmh : null);
+
+      setCity(
+        locationRes.status === "fulfilled"
+          ? (locationRes.value?.city ?? null)
+          : null,
+      );
     };
 
     load();

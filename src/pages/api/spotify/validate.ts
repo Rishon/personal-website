@@ -35,7 +35,6 @@ export default async function handler(
     }
 
     if (response.status === 204) {
-      console.log("No track currently playing");
       return res.status(200).json({ message: "No track currently playing" });
     }
 

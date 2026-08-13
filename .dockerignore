@@ -26,6 +26,8 @@ next-env.d.ts
 .idea
 .vscode
 spotify-data.json
+speed-data.json
+location-data.json
 README.md
 LICENSE
 build-docker.sh

@@ -9,6 +9,7 @@ services:
     volumes:
       - ./spotify-data.json:/app/spotify-data.json
       - ./speed-data.json:/app/speed-data.json
+      - ./location-data.json:/app/location-data.json
     dns:
       - 8.8.8.8
       - 1.1.1.1

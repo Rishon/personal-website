@@ -1,11 +1,20 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { authorise } from "@/lib/quantumApi";
-import { clearSpeed, readSpeed, writeSpeed } from "@/lib/speed";
+import { readLocation, writeCity } from "@/lib/location";
+
+const CITY_PATTERN = /^[\p{L}\p{M}][\p{L}\p{M}\s'-]{0,63}$/u;
+
+// Accepts a plausible place name and rejects anything else outright
+function cleanCity(value: unknown): string | null {
+  if (typeof value !== "string") return null;
+  const city = value.trim();
+  return CITY_PATTERN.test(city) ? city : null;
+}
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
     res.setHeader("Cache-Control", "no-store");
-    return res.status(200).json(readSpeed());
+    return res.status(200).json(readLocation());
   }
 
   if (req.method !== "POST") {
@@ -20,16 +29,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
-  if (req.body?.stopped === true) {
-    clearSpeed();
-    return res.status(200).json({ ok: true });
+  const city = cleanCity(req.body?.city);
+  if (!city) {
+    return res.status(400).json({ error: "Invalid city" });
   }
 
-  const kmh = Number(req.body?.kmh);
-  if (!Number.isFinite(kmh) || kmh < 0 || kmh > 400) {
-    return res.status(400).json({ error: "Invalid speed" });
-  }
-
-  writeSpeed(Math.round(kmh));
+  writeCity(city);
   return res.status(200).json({ ok: true });
 }
