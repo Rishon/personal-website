@@ -107,11 +107,11 @@ export default function StatusBar() {
   const meta = STATUS_META[status];
 
   return (
-    <div className="flex min-w-0 items-center justify-between gap-4">
-      <span className="flex flex-shrink-0 items-center gap-2 text-sm lowercase tracking-tight text-ink-faint">
+    <div className="flex min-w-0 flex-wrap items-center justify-between gap-x-4 gap-y-1.5">
+      <span className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 text-[13px] lowercase tracking-tight text-ink-faint sm:text-sm">
         <span className="flex items-center gap-1.5">
           <span
-            className={`inline-flex h-1.5 w-1.5 rounded-full ${
+            className={`inline-flex h-1.5 w-1.5 flex-shrink-0 rounded-full ${
               status !== "offline"
                 ? "animate-pulse-soft motion-reduce:animate-none"
                 : ""
@@ -122,7 +122,7 @@ export default function StatusBar() {
         </span>
 
         {time && (
-          <>
+          <span className="flex items-center gap-2">
             <span aria-hidden="true">|</span>
             <time
               dateTime={time}
@@ -131,35 +131,38 @@ export default function StatusBar() {
             >
               {time}
             </time>
-          </>
+          </span>
         )}
 
         {city && (
-          <>
+          <span className="flex min-w-0 items-center gap-2">
             <span aria-hidden="true">|</span>
-            <span title="Current city" className="flex items-center gap-1">
-              <LuMapPin className="h-3 w-3" />
-              {city}
+            <span
+              title="Current city"
+              className="flex min-w-0 items-center gap-1"
+            >
+              <LuMapPin className="h-3 w-3 flex-shrink-0" />
+              <span className="truncate">{city}</span>
             </span>
-          </>
+          </span>
         )}
 
         {speed !== null && (
-          <>
+          <span className="flex items-center gap-2">
             <span aria-hidden="true">|</span>
             <span
               title="Live speed while driving"
-              className="flex items-center gap-1 tabular-nums text-accent"
+              className="flex items-center gap-1 whitespace-nowrap tabular-nums text-accent"
             >
-              <LuCar className="h-3 w-3" />
+              <LuCar className="h-3 w-3 flex-shrink-0" />
               {speed} km/h
             </span>
-          </>
+          </span>
         )}
       </span>
 
       {track && (
-        <span className="flex min-w-0 items-center gap-2">
+        <span className="flex w-full min-w-0 items-center gap-2 sm:w-auto sm:max-w-[55%] sm:flex-1 sm:justify-end">
           <FaSpotify className="h-3.5 w-3.5 flex-shrink-0 text-[#1DB954]" />
           {track.cover && (
             <Image
@@ -171,7 +174,7 @@ export default function StatusBar() {
               unoptimized
             />
           )}
-          <span className="truncate text-sm tracking-tight">
+          <span className="min-w-0 truncate text-[13px] tracking-tight sm:text-sm">
             <span className="text-ink">{track.song}</span>
             <span className="text-ink-faint"> | {track.artist}</span>
           </span>
