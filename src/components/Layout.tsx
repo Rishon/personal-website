@@ -144,7 +144,7 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
           <StatusBar />
         </header>
 
-        <main className="mx-auto flex w-full min-h-0 max-w-column flex-1 flex-col overflow-hidden px-4 pb-v-md md:px-6">
+        <main className="mx-auto w-full min-h-0 max-w-column flex-1 px-4 pb-v-md max-md:block max-md:overflow-y-auto max-md:overscroll-y-contain md:flex md:flex-col md:overflow-hidden md:px-6">
           {children}
         </main>
       </div>

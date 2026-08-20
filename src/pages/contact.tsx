@@ -133,7 +133,7 @@ export default function ContactForm() {
 
       <form
         onSubmit={handleSubmit}
-        className="flex min-h-0 max-w-prose flex-1 flex-col gap-v-xs animate-rise opacity-0 motion-reduce:animate-none motion-reduce:opacity-100"
+        className="flex min-h-0 max-w-prose flex-1 flex-col gap-v-xs animate-rise opacity-0 max-md:flex-none motion-reduce:animate-none motion-reduce:opacity-100"
         style={{ animationDelay: "0.36s" }}
       >
         <div className="grid grid-cols-1 gap-v-xs sm:grid-cols-2">
@@ -180,7 +180,7 @@ export default function ContactForm() {
           required
           placeholder="Your message..."
           aria-label="Message"
-          className={`${inputClasses} min-h-0 flex-1 resize-none`}
+          className={`${inputClasses} min-h-0 flex-1 resize-none max-md:h-32 max-md:flex-none`}
         />
 
         <Turnstile

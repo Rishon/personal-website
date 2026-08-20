@@ -72,7 +72,7 @@ export default function Home() {
       </div>
 
       <section
-        className="flex min-h-0 flex-1 flex-col animate-rise opacity-0 motion-reduce:animate-none motion-reduce:opacity-100"
+        className="flex min-h-0 flex-1 flex-col animate-rise opacity-0 max-md:flex-none motion-reduce:animate-none motion-reduce:opacity-100"
         style={{ animationDelay: "0.88s" }}
       >
         <h2 className="mb-v-xs flex-shrink-0 text-label font-medium uppercase text-ink-faint">

@@ -78,6 +78,12 @@ body {
   overscroll-behavior: none;
 }
 
+@media (max-width: 767px) {
+  main {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 body {
   background-color: var(--desk);
   color: var(--ink);
