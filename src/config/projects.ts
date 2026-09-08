@@ -46,7 +46,7 @@ export const allProjects: Project[] = [
   {
     title: "Mikud",
     description: "Find a zip code of an address in Israel.",
-    emoji: "📍",
+    image: "/assets/projects/mikud_logo.webp",
     link: "https://mikud.rishon.systems",
     isGithub: false,
   },
