@@ -20,7 +20,7 @@ export default function Projects() {
       </div>
 
       <div
-        className="min-h-0 flex-1 animate-rise opacity-0 motion-reduce:animate-none motion-reduce:opacity-100"
+        className="min-h-0 flex-1 animate-rise opacity-0 max-md:flex-none motion-reduce:animate-none motion-reduce:opacity-100"
         style={{ animationDelay: "0.3s" }}
       >
         <ProjectGrid projects={allProjects} />
