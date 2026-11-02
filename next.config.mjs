@@ -36,15 +36,6 @@ const nextConfig = {
           },
         ],
       },
-      {
-        source: "/assets/:path*",
-        headers: [
-          {
-            key: "X-Robots-Tag",
-            value: "noimageindex, max-image-preview:none",
-          },
-        ],
-      },
     ];
   },
 };

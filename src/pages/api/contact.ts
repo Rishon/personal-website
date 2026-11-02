@@ -5,14 +5,26 @@ import { TURNSTILE_SECRET_KEY } from "@/lib/turnstile";
 
 dns.setDefaultResultOrder("ipv4first");
 
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
   if (req.method === "POST") {
-    const { name, email, subject, message, captchaToken } = req.body;
+    const { name, email, subject, message, captchaToken } = req.body ?? {};
 
-    if (!name || !email || !subject || !message || !captchaToken) {
+    if (
+      [name, email, subject, message, captchaToken].some(
+        (field) => typeof field !== "string" || !field.trim(),
+      )
+    ) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
@@ -45,10 +57,10 @@ export default async function handler(
       <p style="font-size: 14px; color: #777;">You have received a new submission from the contact form on your website.</p>
       <h2 style="color: #4CAF50;">Details:</h2>
       <ul>
-        <li><strong>Name:</strong> ${name}</li>
-        <li><strong>Email:</strong> ${email}</li>
-        <li><strong>Subject:</strong> ${subject}</li>
-        <li><strong>Message:</strong> ${message}</li>
+        <li><strong>Name:</strong> ${escapeHtml(name)}</li>
+        <li><strong>Email:</strong> ${escapeHtml(email)}</li>
+        <li><strong>Subject:</strong> ${escapeHtml(subject)}</li>
+        <li><strong>Message:</strong> ${escapeHtml(message)}</li>
       </ul>
     </div>
         `,

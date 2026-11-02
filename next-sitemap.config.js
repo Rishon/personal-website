@@ -2,6 +2,7 @@ const PRIORITIES = {
   "/": { priority: 1.0, changefreq: "weekly" },
   "/projects": { priority: 0.8, changefreq: "monthly" },
   "/contact": { priority: 0.5, changefreq: "yearly" },
+  "/privacy": { priority: 0.2, changefreq: "yearly" },
 };
 
 module.exports = {
@@ -17,7 +18,6 @@ module.exports = {
       loc: path,
       priority: meta.priority,
       changefreq: meta.changefreq,
-      lastmod: new Date().toISOString(),
     };
   },
 

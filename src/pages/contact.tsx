@@ -4,6 +4,7 @@ import Turnstile, { useTurnstile } from "react-turnstile";
 import Snackbar from "@/components/Snackbar";
 import WordSettle from "@/components/WordSettle";
 import { TURNSTILE_SITE_KEY } from "@/lib/turnstile";
+import { trackEvent } from "@/lib/analytics";
 import { FaDiscord, FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
@@ -74,6 +75,7 @@ export default function ContactForm() {
       });
 
       if (response.ok) {
+        trackEvent("generate_lead", { form: "contact" });
         setNotification("Message sent - I'll get back to you.");
         setSnackbarType("success");
         setShowSnackbar(true);
@@ -133,6 +135,7 @@ export default function ContactForm() {
 
       <form
         onSubmit={handleSubmit}
+        data-clarity-mask="true"
         className="flex min-h-0 max-w-prose flex-1 flex-col gap-v-xs animate-rise opacity-0 max-md:flex-none motion-reduce:animate-none motion-reduce:opacity-100"
         style={{ animationDelay: "0.36s" }}
       >

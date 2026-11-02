@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LuVolume2, LuVolumeX } from "react-icons/lu";
 import { useClickSound } from "@/lib/useClickSound";
 
@@ -11,6 +12,13 @@ export default function DeskFooter() {
       <span className="select-none font-mono text-sm tracking-tight text-white/40 transition-colors duration-300 hover:text-white/70">
         rishon<span className="text-xs">.systems</span>
       </span>
+
+      <Link
+        href="/privacy"
+        className="ml-6 text-sm text-white/30 transition-colors duration-200 hover:text-white/60"
+      >
+        privacy
+      </Link>
 
       <div className="flex-1" />
 
